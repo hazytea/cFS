@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * SAMPLE_APP Application Mission Configuration Header File
+ * TEMPLATE_APP Application Mission Configuration Header File
  *
  * This is a compatibility header for the "mission_cfg.h" file that has
  * traditionally provided public config definitions for each CFS app.
@@ -28,9 +28,9 @@
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef SAMPLE_APP_MISSION_CFG_H
-#define SAMPLE_APP_MISSION_CFG_H
+#ifndef TEMPLATE_APP_MISSION_CFG_H
+#define TEMPLATE_APP_MISSION_CFG_H
 
-#include "sample_app_interface_cfg.h"
+#include "template_app_interface_cfg.h"
 
 #endif

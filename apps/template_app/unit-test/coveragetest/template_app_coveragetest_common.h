@@ -19,33 +19,36 @@
 /**
  * @file
  *
- * Auto-Generated stub implementations for functions defined in sample_app header
+ * Common definitions for all sample_app coverage tests
  */
 
-#include "sample_app.h"
-#include "utgenstub.h"
+#ifndef TEMPLATE_APP_COVERAGETEST_COMMON_H
+#define TEMPLATE_APP_COVERAGETEST_COMMON_H
 
 /*
- * ----------------------------------------------------
- * Generated stub function for SAMPLE_APP_Init()
- * ----------------------------------------------------
+ * Includes
  */
-CFE_Status_t SAMPLE_APP_Init(void)
-{
-    UT_GenStub_SetupReturnBuffer(SAMPLE_APP_Init, CFE_Status_t);
 
-    UT_GenStub_Execute(SAMPLE_APP_Init, Basic, NULL);
+#include "utassert.h"
+#include "uttest.h"
+#include "utstubs.h"
 
-    return UT_GenStub_GetReturnValue(SAMPLE_APP_Init, CFE_Status_t);
-}
+#include "setup.h"
+#include "eventcheck.h"
+
+#include "cfe.h"
+#include "template_app_eventids.h"
+#include "template_app.h"
+#include "template_app_dispatch.h"
+#include "template_app_cmds.h"
+#include "template_app_utils.h"
+#include "template_app_msgids.h"
+#include "template_app_msg.h"
+#include "template_tbl.h"
 
 /*
- * ----------------------------------------------------
- * Generated stub function for SAMPLE_APP_Main()
- * ----------------------------------------------------
+ * Macro to add a test case to the list of tests to execute
  */
-void SAMPLE_APP_Main(void)
-{
+#define ADD_TEST(test) UtTest_Add((Test_##test), Sample_UT_Setup, Sample_UT_TearDown, #test)
 
-    UT_GenStub_Execute(SAMPLE_APP_Main, Basic, NULL);
-}
+#endif /* TEMPLATE_APP_COVERAGETEST_COMMON_H */

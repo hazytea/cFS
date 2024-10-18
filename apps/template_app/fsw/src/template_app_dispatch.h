@@ -19,20 +19,20 @@
 /**
  * @file
  *
- * Main header file for the SAMPLE application
+ * Main header file for the TEMPLATE application
  */
 
-#ifndef SAMPLE_APP_DISPATCH_H
-#define SAMPLE_APP_DISPATCH_H
+#ifndef TEMPLATE_APP_DISPATCH_H
+#define TEMPLATE_APP_DISPATCH_H
 
 /*
 ** Required header files.
 */
 #include "cfe.h"
-#include "sample_app_msg.h"
+#include "template_app_msg.h"
 
-void SAMPLE_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr);
-void SAMPLE_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr);
-bool SAMPLE_APP_VerifyCmdLength(const CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength);
+void TEMPLATE_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr);
+void TEMPLATE_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr);
+bool TEMPLATE_APP_VerifyCmdLength(const CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength);
 
-#endif /* SAMPLE_APP_DISPATCH_H */
+#endif /* TEMPLATE_APP_DISPATCH_H */

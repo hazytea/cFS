@@ -17,7 +17,7 @@
  ************************************************************************/
 
 /*
-** File: coveragetest_sample_app.c
+** File: coveragetest_template_app.c
 **
 ** Purpose:
 ** Coverage Unit Test cases for the SAMPLE Application
@@ -37,10 +37,10 @@
  */
 
 #include "sample_lib.h" /* For SAMPLE_LIB_Function */
-#include "sample_app_coveragetest_common.h"
-#include "sample_app.h"
-#include "sample_app_dispatch.h"
-#include "sample_app_cmds.h"
+#include "template_app_coveragetest_common.h"
+#include "template_app.h"
+#include "template_app_dispatch.h"
+#include "template_app_cmds.h"
 
 /*
 **********************************************************************************
@@ -48,11 +48,11 @@
 **********************************************************************************
 */
 
-void Test_SAMPLE_APP_ReportHousekeeping(void)
+void Test_TEMPLATE_APP_ReportHousekeeping(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ReportHousekeeping( const CFE_SB_CmdHdr_t *Msg )
+     * void TEMPLATE_APP_ReportHousekeeping( const CFE_SB_CmdHdr_t *Msg )
      */
     CFE_MSG_Message_t *MsgSend;
     CFE_MSG_Message_t *MsgTimestamp;
@@ -64,15 +64,15 @@ void Test_SAMPLE_APP_ReportHousekeeping(void)
     UT_SetDataBuffer(UT_KEY(CFE_SB_TimeStampMsg), &MsgTimestamp, sizeof(MsgTimestamp), false);
 
     /* Call unit under test, NULL pointer confirms command access is through APIs */
-    SAMPLE_APP_SendHkCmd(NULL);
+    TEMPLATE_APP_SendHkCmd(NULL);
 
     /* Confirm message sent*/
     UtAssert_STUB_COUNT(CFE_SB_TransmitMsg, 1);
-    UtAssert_ADDRESS_EQ(MsgSend, &SAMPLE_APP_Data.HkTlm);
+    UtAssert_ADDRESS_EQ(MsgSend, &TEMPLATE_APP_Data.HkTlm);
 
     /* Confirm timestamp msg address */
     UtAssert_STUB_COUNT(CFE_SB_TimeStampMsg, 1);
-    UtAssert_ADDRESS_EQ(MsgTimestamp, &SAMPLE_APP_Data.HkTlm);
+    UtAssert_ADDRESS_EQ(MsgTimestamp, &TEMPLATE_APP_Data.HkTlm);
 
     /*
      * Confirm that the CFE_TBL_Manage() call was done
@@ -80,21 +80,21 @@ void Test_SAMPLE_APP_ReportHousekeeping(void)
     UtAssert_STUB_COUNT(CFE_TBL_Manage, 1);
 }
 
-void Test_SAMPLE_APP_NoopCmd(void)
+void Test_TEMPLATE_APP_NoopCmd(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_NoopCmd( const SAMPLE_APP_Noop_t *Msg )
+     * void TEMPLATE_APP_NoopCmd( const TEMPLATE_APP_Noop_t *Msg )
      */
-    SAMPLE_APP_NoopCmd_t TestMsg;
+    TEMPLATE_APP_NoopCmd_t TestMsg;
     UT_CheckEvent_t      EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
     /* test dispatch of NOOP */
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_NOOP_INF_EID, NULL);
+    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_NOOP_INF_EID, NULL);
 
-    UtAssert_INT32_EQ(SAMPLE_APP_NoopCmd(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ(TEMPLATE_APP_NoopCmd(&TestMsg), CFE_SUCCESS);
 
     /*
      * Confirm that the event was generated
@@ -102,20 +102,20 @@ void Test_SAMPLE_APP_NoopCmd(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ResetCountersCmd(void)
+void Test_TEMPLATE_APP_ResetCountersCmd(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_ResetCounters( const SAMPLE_APP_ResetCounters_t *Msg )
+     * void TEMPLATE_APP_ResetCounters( const TEMPLATE_APP_ResetCounters_t *Msg )
      */
-    SAMPLE_APP_ResetCountersCmd_t TestMsg;
+    TEMPLATE_APP_ResetCountersCmd_t TestMsg;
     UT_CheckEvent_t               EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_RESET_INF_EID, "SAMPLE: RESET command");
+    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_RESET_INF_EID, "TEMPLATE: RESET command");
 
-    UtAssert_INT32_EQ(SAMPLE_APP_ResetCountersCmd(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ(TEMPLATE_APP_ResetCountersCmd(&TestMsg), CFE_SUCCESS);
 
     /*
      * Confirm that the event was generated
@@ -123,29 +123,29 @@ void Test_SAMPLE_APP_ResetCountersCmd(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_SAMPLE_APP_ProcessCmd(void)
+void Test_TEMPLATE_APP_ProcessCmd(void)
 {
     /*
      * Test Case For:
-     * void  SAMPLE_APP_ProcessCmd( const SAMPLE_APP_ProcessCmd_t *Msg )
+     * void  TEMPLATE_APP_ProcessCmd( const TEMPLATE_APP_ProcessCmd_t *Msg )
      */
-    SAMPLE_APP_ProcessCmd_t   TestMsg;
-    SAMPLE_APP_ExampleTable_t TestTblData;
+    TEMPLATE_APP_ProcessCmd_t   TestMsg;
+    TEMPLATE_APP_ExampleTable_t TestTblData;
     void *                    TblPtr = &TestTblData;
 
     memset(&TestTblData, 0, sizeof(TestTblData));
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    /* Provide some table data for the SAMPLE_APP_Process() function to use */
+    /* Provide some table data for the TEMPLATE_APP_Process() function to use */
     TestTblData.Int1 = 40;
     TestTblData.Int2 = 50;
     UT_SetDataBuffer(UT_KEY(CFE_TBL_GetAddress), &TblPtr, sizeof(TblPtr), false);
-    UtAssert_INT32_EQ(SAMPLE_APP_ProcessCmd(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ(TEMPLATE_APP_ProcessCmd(&TestMsg), CFE_SUCCESS);
 
     /*
      * This only needs to account for the call to CFE_ES_WriteToSysLog() directly
      * invoked by the unit under test.   Note that in this build environment, the
-     * SAMPLE_APP_GetCrc() function is a stub.
+     * TEMPLATE_APP_GetCrc() function is a stub.
      */
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 1);
 
@@ -167,7 +167,7 @@ void Test_SAMPLE_APP_ProcessCmd(void)
      * CFE_ES_WriteToSysLog() through the CFE_TBL_GetAddress() error path.
      */
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetAddress), CFE_TBL_ERR_UNREGISTERED);
-    UtAssert_INT32_EQ(SAMPLE_APP_ProcessCmd(&TestMsg), CFE_TBL_ERR_UNREGISTERED);
+    UtAssert_INT32_EQ(TEMPLATE_APP_ProcessCmd(&TestMsg), CFE_TBL_ERR_UNREGISTERED);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 2);
 
     /*
@@ -179,27 +179,27 @@ void Test_SAMPLE_APP_ProcessCmd(void)
      */
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetAddress), CFE_SUCCESS);
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_ReleaseAddress), CFE_TBL_ERR_NO_ACCESS);
-    UtAssert_INT32_EQ(SAMPLE_APP_ProcessCmd(&TestMsg), CFE_TBL_ERR_NO_ACCESS);
+    UtAssert_INT32_EQ(TEMPLATE_APP_ProcessCmd(&TestMsg), CFE_TBL_ERR_NO_ACCESS);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 4);
 }
 
-void Test_SAMPLE_APP_DisplayParamCmd(void)
+void Test_TEMPLATE_APP_DisplayParamCmd(void)
 {
     /*
      * Test Case For:
-     * void  SAMPLE_APP_DisplayParamCmd( const SAMPLE_APP_DisplayParamCmd_t *Msg )
+     * void  TEMPLATE_APP_DisplayParamCmd( const TEMPLATE_APP_DisplayParamCmd_t *Msg )
      */
-    SAMPLE_APP_DisplayParamCmd_t TestMsg;
+    TEMPLATE_APP_DisplayParamCmd_t TestMsg;
     UT_CheckEvent_t              EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, SAMPLE_APP_VALUE_INF_EID, "SAMPLE_APP: ValU32=%lu, ValI16=%d, ValStr=%s");
+    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_VALUE_INF_EID, "TEMPLATE_APP: ValU32=%lu, ValI16=%d, ValStr=%s");
     TestMsg.Payload.ValU32 = 10;
     TestMsg.Payload.ValI16 = -4;
     snprintf(TestMsg.Payload.ValStr, sizeof(TestMsg.Payload.ValStr), "Hello");
 
-    UtAssert_INT32_EQ(SAMPLE_APP_DisplayParamCmd(&TestMsg), CFE_SUCCESS);
+    UtAssert_INT32_EQ(TEMPLATE_APP_DisplayParamCmd(&TestMsg), CFE_SUCCESS);
     /*
      * Confirm that the event was generated
      */
@@ -211,9 +211,9 @@ void Test_SAMPLE_APP_DisplayParamCmd(void)
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(SAMPLE_APP_ReportHousekeeping);
-    ADD_TEST(SAMPLE_APP_NoopCmd);
-    ADD_TEST(SAMPLE_APP_ResetCountersCmd);
-    ADD_TEST(SAMPLE_APP_ProcessCmd);
-    ADD_TEST(SAMPLE_APP_DisplayParamCmd);
+    ADD_TEST(TEMPLATE_APP_ReportHousekeeping);
+    ADD_TEST(TEMPLATE_APP_NoopCmd);
+    ADD_TEST(TEMPLATE_APP_ResetCountersCmd);
+    ADD_TEST(TEMPLATE_APP_ProcessCmd);
+    ADD_TEST(TEMPLATE_APP_DisplayParamCmd);
 }

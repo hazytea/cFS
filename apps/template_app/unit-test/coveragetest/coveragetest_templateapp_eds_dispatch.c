@@ -34,10 +34,10 @@
  * Includes
  */
 
-#include "sample_app_coveragetest_common.h"
-#include "sample_app.h"
-#include "sample_app_dispatch.h"
-#include "sample_app_cmds.h"
+#include "template_app_coveragetest_common.h"
+#include "template_app.h"
+#include "template_app_dispatch.h"
+#include "template_app_cmds.h"
 
 /*
 **********************************************************************************
@@ -45,11 +45,11 @@
 **********************************************************************************
 */
 
-void Test_SAMPLE_APP_TaskPipe(void)
+void Test_TEMPLATE_APP_TaskPipe(void)
 {
     /*
      * Test Case For:
-     * void SAMPLE_APP_TaskPipe
+     * void TEMPLATE_APP_TaskPipe
      */
 }
 
@@ -58,5 +58,5 @@ void Test_SAMPLE_APP_TaskPipe(void)
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(SAMPLE_APP_TaskPipe);
+    ADD_TEST(TEMPLATE_APP_TaskPipe);
 }

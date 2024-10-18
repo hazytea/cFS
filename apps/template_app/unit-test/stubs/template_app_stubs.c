@@ -19,36 +19,33 @@
 /**
  * @file
  *
- * Auto-Generated stub implementations for functions defined in sample_app_utils header
+ * Auto-Generated stub implementations for functions defined in sample_app header
  */
 
-#include "sample_app_utils.h"
+#include "template_app.h"
 #include "utgenstub.h"
 
 /*
  * ----------------------------------------------------
- * Generated stub function for SAMPLE_APP_GetCrc()
+ * Generated stub function for TEMPLATE_APP_Init()
  * ----------------------------------------------------
  */
-void SAMPLE_APP_GetCrc(const char *TableName)
+CFE_Status_t TEMPLATE_APP_Init(void)
 {
-    UT_GenStub_AddParam(SAMPLE_APP_GetCrc, const char *, TableName);
+    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_Init, CFE_Status_t);
 
-    UT_GenStub_Execute(SAMPLE_APP_GetCrc, Basic, NULL);
+    UT_GenStub_Execute(TEMPLATE_APP_Init, Basic, NULL);
+
+    return UT_GenStub_GetReturnValue(TEMPLATE_APP_Init, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for SAMPLE_APP_TblValidationFunc()
+ * Generated stub function for TEMPLATE_APP_Main()
  * ----------------------------------------------------
  */
-CFE_Status_t SAMPLE_APP_TblValidationFunc(void *TblData)
+void TEMPLATE_APP_Main(void)
 {
-    UT_GenStub_SetupReturnBuffer(SAMPLE_APP_TblValidationFunc, CFE_Status_t);
 
-    UT_GenStub_AddParam(SAMPLE_APP_TblValidationFunc, void *, TblData);
-
-    UT_GenStub_Execute(SAMPLE_APP_TblValidationFunc, Basic, NULL);
-
-    return UT_GenStub_GetReturnValue(SAMPLE_APP_TblValidationFunc, CFE_Status_t);
+    UT_GenStub_Execute(TEMPLATE_APP_Main, Basic, NULL);
 }

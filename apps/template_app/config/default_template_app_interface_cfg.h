@@ -18,7 +18,7 @@
 
 /**
  * @file
- *   SAMPLE_APP Application Public Definitions
+ *   TEMPLATE_APP Application Public Definitions
  *
  * This provides default values for configurable items that affect
  * the interface(s) of this module.  This includes the CMD/TLM message
@@ -29,8 +29,8 @@
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef SAMPLE_APP_INTERFACE_CFG_H
-#define SAMPLE_APP_INTERFACE_CFG_H
+#ifndef TEMPLATE_APP_INTERFACE_CFG_H
+#define TEMPLATE_APP_INTERFACE_CFG_H
 
 /**
  * \brief Length of string buffer in the Display Value command
@@ -39,6 +39,6 @@
  * parameters of different types.  This macro controls the length
  * of the string parameter.
  */
-#define SAMPLE_APP_STRING_VAL_LEN 10
+#define TEMPLATE_APP_STRING_VAL_LEN 10
 
 #endif

@@ -20,9 +20,9 @@
  * @file
  *   Define TO Lab Performance IDs
  */
-#ifndef SAMPLE_APP_PERFIDS_H
-#define SAMPLE_APP_PERFIDS_H
+#ifndef TEMPLATE_APP_PERFIDS_H
+#define TEMPLATE_APP_PERFIDS_H
 
-#define SAMPLE_APP_PERF_ID 91
+#define TEMPLATE_APP_PERF_ID 91
 
 #endif

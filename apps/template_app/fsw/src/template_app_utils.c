@@ -18,34 +18,34 @@
 
 /**
  * \file
- *   This file contains the source code for the Sample App utility functions
+ *   This file contains the source code for the Template App utility functions
  */
 
 /*
 ** Include Files:
 */
-#include "sample_app.h"
-#include "sample_app_eventids.h"
-#include "sample_app_tbl.h"
-#include "sample_app_utils.h"
+#include "template_app.h"
+#include "template_app_eventids.h"
+#include "template_tbl.h"
+#include "template_app_utils.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /*                                                                 */
 /* Verify contents of First Example Table buffer contents                  */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-CFE_Status_t SAMPLE_APP_TblValidationFunc(void *TblData)
+CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData)
 {
     CFE_Status_t               ReturnCode = CFE_SUCCESS;
-    SAMPLE_APP_ExampleTable_t *TblDataPtr = (SAMPLE_APP_ExampleTable_t *)TblData;
+    TEMPLATE_APP_ExampleTable_t *TblDataPtr = (TEMPLATE_APP_ExampleTable_t *)TblData;
 
     /*
-    ** Sample Example Table Validation
+    ** Example Table Validation
     */
-    if (TblDataPtr->Int1 > SAMPLE_APP_TBL_ELEMENT_1_MAX)
+    if (TblDataPtr->Int1 > TEMPLATE_APP_TBL_ELEMENT_1_MAX)
     {
         /* First element is out of range, return an appropriate error code */
-        ReturnCode = SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE;
+        ReturnCode = TEMPLATE_APP_TABLE_OUT_OF_RANGE_ERR_CODE;
     }
 
     return ReturnCode;
@@ -56,7 +56,7 @@ CFE_Status_t SAMPLE_APP_TblValidationFunc(void *TblData)
 /* Output CRC                                                      */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void SAMPLE_APP_GetCrc(const char *TableName)
+void TEMPLATE_APP_GetCrc(const char *TableName)
 {
     CFE_Status_t   status;
     uint32         Crc;
@@ -65,11 +65,11 @@ void SAMPLE_APP_GetCrc(const char *TableName)
     status = CFE_TBL_GetInfo(&TblInfoPtr, TableName);
     if (status != CFE_SUCCESS)
     {
-        CFE_ES_WriteToSysLog("Sample App: Error Getting Example Table Info");
+        CFE_ES_WriteToSysLog("Template App: Error Getting Example Table Info");
     }
     else
     {
         Crc = TblInfoPtr.Crc;
-        CFE_ES_WriteToSysLog("Sample App: CRC: 0x%08lX\n\n", (unsigned long)Crc);
+        CFE_ES_WriteToSysLog("Template App: CRC: 0x%08lX\n\n", (unsigned long)Crc);
     }
 }

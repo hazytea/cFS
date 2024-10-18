@@ -18,37 +18,19 @@
 
 /**
  * @file
+ *   Specification for the TEMPLATE_APP table structures
  *
- * Common definitions for all sample_app coverage tests
+ * @note
+ *   Constants and enumerated types related to these table structures
+ *   are defined in template_app_tbldefs.h.
  */
+#ifndef TEMPLATE_APP_TBL_H
+#define TEMPLATE_APP_TBL_H
 
-#ifndef SAMPLE_APP_COVERAGETEST_COMMON_H
-#define SAMPLE_APP_COVERAGETEST_COMMON_H
+#include "template_app_tbldefs.h"
+#include "template_app_tblstruct.h"
 
-/*
- * Includes
- */
+/* Define filenames of default data images for tables */
+#define TEMPLATE_APP_TABLE_FILE "/cf/template_app.tbl"
 
-#include "utassert.h"
-#include "uttest.h"
-#include "utstubs.h"
-
-#include "setup.h"
-#include "eventcheck.h"
-
-#include "cfe.h"
-#include "sample_app_eventids.h"
-#include "sample_app.h"
-#include "sample_app_dispatch.h"
-#include "sample_app_cmds.h"
-#include "sample_app_utils.h"
-#include "sample_app_msgids.h"
-#include "sample_app_msg.h"
-#include "sample_app_tbl.h"
-
-/*
- * Macro to add a test case to the list of tests to execute
- */
-#define ADD_TEST(test) UtTest_Add((Test_##test), Sample_UT_Setup, Sample_UT_TearDown, #test)
-
-#endif /* SAMPLE_APP_COVERAGETEST_COMMON_H */
+#endif

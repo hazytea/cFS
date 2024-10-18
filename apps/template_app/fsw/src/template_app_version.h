@@ -19,30 +19,30 @@
 /**
  * @file
  *
- *  The Sample App header file containing version information
+ *  The Template App header file containing version information
  */
 
-#ifndef SAMPLE_APP_VERSION_H
-#define SAMPLE_APP_VERSION_H
+#ifndef TEMPLATE_APP_VERSION_H
+#define TEMPLATE_APP_VERSION_H
 
 /* Development Build Macro Definitions */
 
-#define SAMPLE_APP_BUILD_NUMBER    46 /*!< Development Build: Number of commits since baseline */
-#define SAMPLE_APP_BUILD_BASELINE  "equuleus-rc1" /*!< Development Build: git tag that is the base for the current development */
-#define SAMPLE_APP_BUILD_DEV_CYCLE "equuleus-rc2" /**< @brief Development: Release name for current development cycle */
-#define SAMPLE_APP_BUILD_CODENAME  "Equuleus" /**< @brief: Development: Code name for the current build */
+#define TEMPLATE_APP_BUILD_NUMBER    46 /*!< Development Build: Number of commits since baseline */
+#define TEMPLATE_APP_BUILD_BASELINE  "equuleus-rc1" /*!< Development Build: git tag that is the base for the current development */
+#define TEMPLATE_APP_BUILD_DEV_CYCLE "equuleus-rc2" /**< @brief Development: Release name for current development cycle */
+#define TEMPLATE_APP_BUILD_CODENAME  "Equuleus" /**< @brief: Development: Code name for the current build */
 
 /*
  * Version Macros, see \ref cfsversions for definitions.
  */
-#define SAMPLE_APP_MAJOR_VERSION 1  /*!< @brief Major version number. */
-#define SAMPLE_APP_MINOR_VERSION 1  /*!< @brief Minor version number. */
-#define SAMPLE_APP_REVISION      0  /*!< @brief Revision version number. Value of 0 indicates a development version.*/
+#define TEMPLATE_APP_MAJOR_VERSION 1  /*!< @brief Major version number. */
+#define TEMPLATE_APP_MINOR_VERSION 1  /*!< @brief Minor version number. */
+#define TEMPLATE_APP_REVISION      0  /*!< @brief Revision version number. Value of 0 indicates a development version.*/
 
 /**
  * @brief Last official release.
  */
-#define SAMPLE_APP_LAST_OFFICIAL "v1.1.0"
+#define TEMPLATE_APP_LAST_OFFICIAL "v1.1.0"
 
 /*!
  * @brief Mission revision.
@@ -51,17 +51,17 @@
  * Values 1-254 are reserved for mission use to denote patches/customizations as needed. NOTE: Reserving 0 and 0xFF for
  * cFS open-source development use (pending resolution of nasa/cFS#440)
  */
-#define SAMPLE_APP_MISSION_REV 0xFF
+#define TEMPLATE_APP_MISSION_REV 0xFF
 
-#define SAMPLE_APP_STR_HELPER(x) #x /*!< @brief Helper function to concatenate strings from integer macros */
-#define SAMPLE_APP_STR(x) \
-    SAMPLE_APP_STR_HELPER(x) /*!< @brief Helper function to concatenate strings from integer macros */
+#define TEMPLATE_APP_STR_HELPER(x) #x /*!< @brief Helper function to concatenate strings from integer macros */
+#define TEMPLATE_APP_STR(x) \
+    TEMPLATE_APP_STR_HELPER(x) /*!< @brief Helper function to concatenate strings from integer macros */
 
 /*! @brief Development Build Version Number.
  * @details Baseline git tag + Number of commits since baseline. @n
  * See @ref cfsversions for format differences between development and release versions.
  */
-#define SAMPLE_APP_VERSION SAMPLE_APP_BUILD_BASELINE "+dev" SAMPLE_APP_STR(SAMPLE_APP_BUILD_NUMBER)
+#define TEMPLATE_APP_VERSION TEMPLATE_APP_BUILD_BASELINE "+dev" TEMPLATE_APP_STR(TEMPLATE_APP_BUILD_NUMBER)
 
 /**
  * @brief Max Version String length.
@@ -69,6 +69,6 @@
  * Maximum length that an OSAL version string can be.
  * 
  */
-#define SAMPLE_APP_CFG_MAX_VERSION_STR_LEN 256
+#define TEMPLATE_APP_CFG_MAX_VERSION_STR_LEN 256
 
-#endif /* SAMPLE_APP_VERSION_H */
+#endif /* TEMPLATE_APP_VERSION_H */

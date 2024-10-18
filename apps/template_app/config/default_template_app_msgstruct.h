@@ -18,22 +18,22 @@
 
 /**
  * @file
- *   Specification for the SAMPLE_APP command and telemetry
+ *   Specification for the TEMPLATE_APP command and telemetry
  *   message data types.
  *
  * @note
  *   Constants and enumerated types related to these message structures
- *   are defined in sample_app_msgdefs.h.
+ *   are defined in template_app_msgdefs.h.
  */
-#ifndef SAMPLE_APP_MSGSTRUCT_H
-#define SAMPLE_APP_MSGSTRUCT_H
+#ifndef TEMPLATE_APP_MSGSTRUCT_H
+#define TEMPLATE_APP_MSGSTRUCT_H
 
 /************************************************************************
  * Includes
  ************************************************************************/
 
-#include "sample_app_mission_cfg.h"
-#include "sample_app_msgdefs.h"
+#include "template_app_mission_cfg.h"
+#include "template_app_msgdefs.h"
 #include "cfe_msg_hdr.h"
 
 /*************************************************************************/
@@ -48,38 +48,38 @@
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} SAMPLE_APP_NoopCmd_t;
+} TEMPLATE_APP_NoopCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} SAMPLE_APP_ResetCountersCmd_t;
+} TEMPLATE_APP_ResetCountersCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} SAMPLE_APP_ProcessCmd_t;
+} TEMPLATE_APP_ProcessCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t           CommandHeader; /**< \brief Command header */
-    SAMPLE_APP_DisplayParam_Payload_t Payload;
-} SAMPLE_APP_DisplayParamCmd_t;
+    TEMPLATE_APP_DisplayParam_Payload_t Payload;
+} TEMPLATE_APP_DisplayParamCmd_t;
 
 /*************************************************************************/
 /*
-** Type definition (Sample App housekeeping)
+** Type definition (Template App housekeeping)
 */
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} SAMPLE_APP_SendHkCmd_t;
+} TEMPLATE_APP_SendHkCmd_t;
 
 typedef struct
 {
     CFE_MSG_TelemetryHeader_t  TelemetryHeader; /**< \brief Telemetry header */
-    SAMPLE_APP_HkTlm_Payload_t Payload;         /**< \brief Telemetry payload */
-} SAMPLE_APP_HkTlm_t;
+    TEMPLATE_APP_HkTlm_Payload_t Payload;         /**< \brief Telemetry payload */
+} TEMPLATE_APP_HkTlm_t;
 
-#endif /* SAMPLE_APP_MSGSTRUCT_H */
+#endif /* TEMPLATE_APP_MSGSTRUCT_H */

@@ -19,11 +19,11 @@
 /**
  * @file
  *
- * Main header file for the Sample application
+ * Main header file for the Template application
  */
 
-#ifndef SAMPLE_APP_H
-#define SAMPLE_APP_H
+#ifndef TEMPLATE_APP_H
+#define TEMPLATE_APP_H
 
 /*
 ** Required header files.
@@ -31,12 +31,12 @@
 #include "cfe.h"
 #include "cfe_config.h"
 
-#include "sample_app_mission_cfg.h"
-#include "sample_app_platform_cfg.h"
+#include "template_app_mission_cfg.h"
+#include "template_app_platform_cfg.h"
 
-#include "sample_app_perfids.h"
-#include "sample_app_msgids.h"
-#include "sample_app_msg.h"
+#include "template_app_perfids.h"
+#include "template_app_msgids.h"
+#include "template_app_msg.h"
 
 /************************************************************************
 ** Type Definitions
@@ -56,7 +56,7 @@ typedef struct
     /*
     ** Housekeeping telemetry packet...
     */
-    SAMPLE_APP_HkTlm_t HkTlm;
+    TEMPLATE_APP_HkTlm_t HkTlm;
 
     /*
     ** Run Status variable used in the main processing loop
@@ -74,22 +74,22 @@ typedef struct
     char   PipeName[CFE_MISSION_MAX_API_LEN];
     uint16 PipeDepth;
 
-    CFE_TBL_Handle_t TblHandles[SAMPLE_APP_NUMBER_OF_TABLES];
-} SAMPLE_APP_Data_t;
+    CFE_TBL_Handle_t TblHandles[TEMPLATE_APP_NUMBER_OF_TABLES];
+} TEMPLATE_APP_Data_t;
 
 /*
 ** Global data structure
 */
-extern SAMPLE_APP_Data_t SAMPLE_APP_Data;
+extern TEMPLATE_APP_Data_t TEMPLATE_APP_Data;
 
 /****************************************************************************/
 /*
 ** Local function prototypes.
 **
-** Note: Except for the entry point (SAMPLE_APP_Main), these
+** Note: Except for the entry point (TEMPLATE_APP_Main), these
 **       functions are not called from any other source module.
 */
-void         SAMPLE_APP_Main(void);
-CFE_Status_t SAMPLE_APP_Init(void);
+void         TEMPLATE_APP_Main(void);
+CFE_Status_t TEMPLATE_APP_Init(void);
 
-#endif /* SAMPLE_APP_H */
+#endif /* TEMPLATE_APP_H */

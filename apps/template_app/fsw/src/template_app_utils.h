@@ -18,18 +18,18 @@
 
 /**
  * @file
- *   This file contains the prototypes for the Sample App utility functions
+ *   This file contains the prototypes for the Template App utility functions
  */
 
-#ifndef SAMPLE_APP_UTILS_H
-#define SAMPLE_APP_UTILS_H
+#ifndef TEMPLATE_APP_UTILS_H
+#define TEMPLATE_APP_UTILS_H
 
 /*
 ** Required header files.
 */
-#include "sample_app.h"
+#include "template_app.h"
 
-CFE_Status_t SAMPLE_APP_TblValidationFunc(void *TblData);
-void         SAMPLE_APP_GetCrc(const char *TableName);
+CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData);
+void         TEMPLATE_APP_GetCrc(const char *TableName);
 
-#endif /* SAMPLE_APP_UTILS_H */
+#endif /* TEMPLATE_APP_UTILS_H */

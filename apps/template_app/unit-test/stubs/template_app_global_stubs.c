@@ -17,11 +17,11 @@
  * limitations under the License.
  ************************************************************************/
 
-#include "sample_app.h"
+#include "template_app.h"
 
 /* UT includes */
 #include "uttest.h"
 #include "utassert.h"
 #include "utstubs.h"
 
-SAMPLE_APP_Data_t SAMPLE_APP_Data;
+TEMPLATE_APP_Data_t TEMPLATE_APP_Data;

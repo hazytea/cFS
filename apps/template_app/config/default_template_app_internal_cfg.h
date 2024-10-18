@@ -18,7 +18,7 @@
 
 /**
  * @file
- *   SAMPLE_APP Application Private Config Definitions
+ *   TEMPLATE_APP Application Private Config Definitions
  *
  * This provides default values for configurable items that are internal
  * to this module and do NOT affect the interface(s) of this module.  Changes
@@ -29,16 +29,16 @@
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef SAMPLE_APP_INTERNAL_CFG_H
-#define SAMPLE_APP_INTERNAL_CFG_H
+#ifndef TEMPLATE_APP_INTERNAL_CFG_H
+#define TEMPLATE_APP_INTERNAL_CFG_H
 
 /***********************************************************************/
-#define SAMPLE_APP_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
+#define TEMPLATE_APP_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
 
-#define SAMPLE_APP_NUMBER_OF_TABLES 1 /* Number of Example Table(s) */
+#define TEMPLATE_APP_NUMBER_OF_TABLES 1 /* Number of Example Table(s) */
 
-#define SAMPLE_APP_TABLE_OUT_OF_RANGE_ERR_CODE -1
+#define TEMPLATE_APP_TABLE_OUT_OF_RANGE_ERR_CODE -1
 
-#define SAMPLE_APP_TBL_ELEMENT_1_MAX 10
+#define TEMPLATE_APP_TBL_ELEMENT_1_MAX 10
 
 #endif
