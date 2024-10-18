@@ -1,0 +1,18 @@
+#Step 1:  Copy old app to new and change file names.
+Copy over desired template app.
+cd app/template_app/config
+rename 's/default_template_/default_<new_name>_/' default_template_app_*
+cd app/template_app/eds
+mv template_app.xml <new_name>_app.xml
+cd app/template_app/fsw/inc
+mv template_app_eventids.h <new_name>_app_eventids.h
+cd apps/template_app/fsw/src
+rename 's/template_/<new_name>_/' template_app*
+cd apps/template_app/fsw/tables
+mv template_app_tbl.c <new_name>_app_tbl.c
+#rename contents of app/unit-test, if desired.
+
+#Step 2:  Modify file contents to reflect new app name.
+
+
+cd 
