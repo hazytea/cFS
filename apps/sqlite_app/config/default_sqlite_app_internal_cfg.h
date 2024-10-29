@@ -18,7 +18,7 @@
 
 /**
  * @file
- *   TEMPLATE_APP Application Private Config Definitions
+ *   SQLITE_APP Application Private Config Definitions
  *
  * This provides default values for configurable items that are internal
  * to this module and do NOT affect the interface(s) of this module.  Changes
@@ -29,16 +29,16 @@
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef TEMPLATE_APP_INTERNAL_CFG_H
-#define TEMPLATE_APP_INTERNAL_CFG_H
+#ifndef SQLITE_APP_INTERNAL_CFG_H
+#define SQLITE_APP_INTERNAL_CFG_H
 
 /***********************************************************************/
-#define TEMPLATE_APP_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
+#define SQLITE_APP_PIPE_DEPTH 32 /* Depth of the Command Pipe for Application */
 
-#define TEMPLATE_APP_NUMBER_OF_TABLES 1 /* Number of Example Table(s) */
+#define SQLITE_APP_NUMBER_OF_TABLES 1 /* Number of Example Table(s) */
 
-#define TEMPLATE_APP_TABLE_OUT_OF_RANGE_ERR_CODE -1
+#define SQLITE_APP_TABLE_OUT_OF_RANGE_ERR_CODE -1
 
-#define TEMPLATE_APP_TBL_ELEMENT_1_MAX 10
+#define SQLITE_APP_TBL_ELEMENT_1_MAX 10
 
 #endif

@@ -18,19 +18,19 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP table structures
+ *   Specification for the SQLITE_APP table structures
  *
  * @note
  *   Constants and enumerated types related to these table structures
- *   are defined in template_app_tbldefs.h.
+ *   are defined in sqlite_app_tbldefs.h.
  */
-#ifndef TEMPLATE_APP_TBL_H
-#define TEMPLATE_APP_TBL_H
+#ifndef SQLITE_APP_TBL_H
+#define SQLITE_APP_TBL_H
 
-#include "template_app_tbldefs.h"
-#include "template_app_tblstruct.h"
+#include "sqlite_app_tbldefs.h"
+#include "sqlite_app_tblstruct.h"
 
 /* Define filenames of default data images for tables */
-#define TEMPLATE_APP_TABLE_FILE "/cf/template_app.tbl"
+#define SQLITE_APP_TABLE_FILE "/cf/sqlite_app.tbl"
 
 #endif

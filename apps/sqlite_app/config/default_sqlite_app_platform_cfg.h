@@ -19,7 +19,7 @@
 /**
  * @file
  *
- * TEMPLATE_APP Application Platform Configuration Header File
+ * SQLITE_APP Application Platform Configuration Header File
  *
  * This is a compatibility header for the "platform_cfg.h" file that has
  * traditionally provided both public and private config definitions
@@ -32,10 +32,10 @@
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef TEMPLATE_APP_PLATFORM_CFG_H
-#define TEMPLATE_APP_PLATFORM_CFG_H
+#ifndef SQLITE_APP_PLATFORM_CFG_H
+#define SQLITE_APP_PLATFORM_CFG_H
 
-#include "template_app_mission_cfg.h"
-#include "template_app_internal_cfg.h"
+#include "sqlite_app_mission_cfg.h"
+#include "sqlite_app_internal_cfg.h"
 
 #endif

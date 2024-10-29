@@ -18,34 +18,34 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP command and telemetry
+ *   Specification for the SQLITE_APP command and telemetry
  *   message constant definitions.
  *
- *  For TEMPLATE_APP this is only the function/command code definitions
+ *  For SQLITE_APP this is only the function/command code definitions
  */
-#ifndef TEMPLATE_APP_MSGDEFS_H
-#define TEMPLATE_APP_MSGDEFS_H
+#ifndef SQLITE_APP_MSGDEFS_H
+#define SQLITE_APP_MSGDEFS_H
 
 #include "common_types.h"
-#include "template_app_fcncodes.h"
+#include "sqlite_app_fcncodes.h"
 
-typedef struct TEMPLATE_APP_DisplayParam_Payload
+typedef struct SQLITE_APP_DisplayParam_Payload
 {
     uint32 ValU32;                            /**< 32 bit unsigned integer value */
     int16  ValI16;                            /**< 16 bit signed integer value */
-    char   ValStr[TEMPLATE_APP_STRING_VAL_LEN]; /**< An example string */
-} TEMPLATE_APP_DisplayParam_Payload_t;
+    char   ValStr[SQLITE_APP_STRING_VAL_LEN]; /**< An example string */
+} SQLITE_APP_DisplayParam_Payload_t;
 
 /*************************************************************************/
 /*
-** Type definition (Template App housekeeping)
+** Type definition (Sqlite App housekeeping)
 */
 
-typedef struct TEMPLATE_APP_HkTlm_Payload
+typedef struct SQLITE_APP_HkTlm_Payload
 {
     uint8 CommandErrorCounter;
     uint8 CommandCounter;
     uint8 spare[2];
-} TEMPLATE_APP_HkTlm_Payload_t;
+} SQLITE_APP_HkTlm_Payload_t;
 
 #endif

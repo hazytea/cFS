@@ -17,13 +17,13 @@ Check in code at this point as a save point.
 
 #Step 2:  Modify file contents to reflect new app name.
 In config/default_<new_name>_app_fcncodes.h, select the template app name (TEMPLATE_APP) and do a case-sensitive replace of the phrase in the workspace defined by the app directory.
-In config/inc_<new_name>_app_eventids.h, select the template app name (Template App) and do a case-sensitive replace of the phrase in the workspace defined by the app directory.
+In fsw/inc/<new_name>_app_eventids.h, select the template app name (Template App) and do a case-sensitive replace of the phrase in the workspace defined by the app directory.
 Do a full text, case-insensitive search on the word "template" and continue replacing until none are left.  Care to always do case-senstive replacement and include underscores to be pedantic.
 Will take about 10 replacements, including unit test directories.
 Check in code at this point, as a save point.
 
 #Step 3:  CMakeLists.txt changes.
-Change the project name and cfe_app name.
+Check the project name and cfe_app name.
 Remove references to template or sample libraries.
 Do similar for unit test file, if desired.
 

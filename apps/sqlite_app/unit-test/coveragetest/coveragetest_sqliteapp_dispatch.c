@@ -34,10 +34,10 @@
  * Includes
  */
 
-#include "template_app_coveragetest_common.h"
-#include "template_app.h"
-#include "template_app_dispatch.h"
-#include "template_app_cmds.h"
+#include "sqlite_app_coveragetest_common.h"
+#include "sqlite_app.h"
+#include "sqlite_app_dispatch.h"
+#include "sqlite_app_cmds.h"
 
 /*
 **********************************************************************************
@@ -45,17 +45,17 @@
 **********************************************************************************
 */
 
-void Test_TEMPLATE_APP_TaskPipe(void)
+void Test_SQLITE_APP_TaskPipe(void)
 {
     /*
      * Test Case For:
-     * void TEMPLATE_APP_TaskPipe
+     * void SQLITE_APP_TaskPipe
      */
     /* a buffer large enough for any command message */
     union
     {
         CFE_SB_Buffer_t      SBBuf;
-        TEMPLATE_APP_NoopCmd_t Noop;
+        SQLITE_APP_NoopCmd_t Noop;
     } TestMsg;
     CFE_SB_MsgId_t    TestMsgId;
     CFE_MSG_FcnCode_t FcnCode;
@@ -63,28 +63,28 @@ void Test_TEMPLATE_APP_TaskPipe(void)
     UT_CheckEvent_t   EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
-    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_MID_ERR_EID, "TEMPLATE: invalid command packet,MID = 0x%x");
+    UT_CHECKEVENT_SETUP(&EventTest, SQLITE_APP_MID_ERR_EID, "SQLITE: invalid command packet,MID = 0x%x");
 
     /*
      * The CFE_MSG_GetMsgId() stub uses a data buffer to hold the
      * message ID values to return.
      */
-    TestMsgId = CFE_SB_ValueToMsgId(TEMPLATE_APP_CMD_MID);
-    FcnCode   = TEMPLATE_APP_NOOP_CC;
+    TestMsgId = CFE_SB_ValueToMsgId(SQLITE_APP_CMD_MID);
+    FcnCode   = SQLITE_APP_NOOP_CC;
     MsgSize   = sizeof(TestMsg.Noop);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &MsgSize, sizeof(MsgSize), false);
-    TEMPLATE_APP_TaskPipe(&TestMsg.SBBuf);
+    SQLITE_APP_TaskPipe(&TestMsg.SBBuf);
 
-    TestMsgId = CFE_SB_ValueToMsgId(TEMPLATE_APP_SEND_HK_MID);
+    TestMsgId = CFE_SB_ValueToMsgId(SQLITE_APP_SEND_HK_MID);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
-    TEMPLATE_APP_TaskPipe(&TestMsg.SBBuf);
+    SQLITE_APP_TaskPipe(&TestMsg.SBBuf);
 
     /* invalid message id */
     TestMsgId = CFE_SB_INVALID_MSG_ID;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &TestMsgId, sizeof(TestMsgId), false);
-    TEMPLATE_APP_TaskPipe(&TestMsg.SBBuf);
+    SQLITE_APP_TaskPipe(&TestMsg.SBBuf);
 
     /*
      * Confirm that the event was generated only _once_
@@ -92,11 +92,11 @@ void Test_TEMPLATE_APP_TaskPipe(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_TEMPLATE_APP_ProcessGroundCommand(void)
+void Test_SQLITE_APP_ProcessGroundCommand(void)
 {
     /*
      * Test Case For:
-     * void TEMPLATE_APP_ProcessGroundCommand
+     * void SQLITE_APP_ProcessGroundCommand
      */
     CFE_MSG_FcnCode_t FcnCode;
     size_t            Size;
@@ -106,16 +106,16 @@ void Test_TEMPLATE_APP_ProcessGroundCommand(void)
     union
     {
         CFE_SB_Buffer_t               SBBuf;
-        TEMPLATE_APP_NoopCmd_t          Noop;
-        TEMPLATE_APP_ResetCountersCmd_t Reset;
-        TEMPLATE_APP_ProcessCmd_t       Process;
-        TEMPLATE_APP_DisplayParamCmd_t  DisplayParam;
+        SQLITE_APP_NoopCmd_t          Noop;
+        SQLITE_APP_ResetCountersCmd_t Reset;
+        SQLITE_APP_ProcessCmd_t       Process;
+        SQLITE_APP_DisplayParamCmd_t  DisplayParam;
     } TestMsg;
     UT_CheckEvent_t EventTest;
 
     memset(&TestMsg, 0, sizeof(TestMsg));
 
-    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_CMD_LEN_ERR_EID,
+    UT_CHECKEVENT_SETUP(&EventTest, SQLITE_APP_CMD_LEN_ERR_EID,
                         "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u");
 
     /*
@@ -128,101 +128,101 @@ void Test_TEMPLATE_APP_ProcessGroundCommand(void)
      */
 
     /* test dispatch of NOOP */
-    FcnCode = TEMPLATE_APP_NOOP_CC;
+    FcnCode = SQLITE_APP_NOOP_CC;
     Size    = sizeof(TestMsg.Noop);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_NoopCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_NoopCmd, 1);
 
-    FcnCode = TEMPLATE_APP_NOOP_CC;
+    FcnCode = SQLITE_APP_NOOP_CC;
     Size    = sizeof(TestMsg.Noop) - 1;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_NoopCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_NoopCmd, 1);
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 
     /* test dispatch of RESET */
-    FcnCode = TEMPLATE_APP_RESET_COUNTERS_CC;
+    FcnCode = SQLITE_APP_RESET_COUNTERS_CC;
     Size    = sizeof(TestMsg.Reset);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_ResetCountersCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_ResetCountersCmd, 1);
 
-    FcnCode = TEMPLATE_APP_RESET_COUNTERS_CC;
+    FcnCode = SQLITE_APP_RESET_COUNTERS_CC;
     Size    = sizeof(TestMsg.Reset) - 1;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_ResetCountersCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_ResetCountersCmd, 1);
     UtAssert_UINT32_EQ(EventTest.MatchCount, 2);
 
     /* test dispatch of PROCESS */
-    /* note this will end up calling TEMPLATE_APP_Process(), and as such it needs to
+    /* note this will end up calling SQLITE_APP_Process(), and as such it needs to
      * avoid dereferencing a table which does not exist. */
-    FcnCode = TEMPLATE_APP_PROCESS_CC;
+    FcnCode = SQLITE_APP_PROCESS_CC;
     Size    = sizeof(TestMsg.Process);
     UT_SetDefaultReturnValue(UT_KEY(CFE_TBL_GetAddress), CFE_TBL_ERR_UNREGISTERED);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_ProcessCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_ProcessCmd, 1);
 
-    FcnCode = TEMPLATE_APP_PROCESS_CC;
+    FcnCode = SQLITE_APP_PROCESS_CC;
     Size    = sizeof(TestMsg.Process) - 1;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_ProcessCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_ProcessCmd, 1);
     UtAssert_UINT32_EQ(EventTest.MatchCount, 3);
 
     /* test dispatch of DISPLAY_PARAM */
-    FcnCode = TEMPLATE_APP_DISPLAY_PARAM_CC;
+    FcnCode = SQLITE_APP_DISPLAY_PARAM_CC;
     Size    = sizeof(TestMsg.DisplayParam);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_DisplayParamCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_DisplayParamCmd, 1);
 
-    FcnCode = TEMPLATE_APP_DISPLAY_PARAM_CC;
+    FcnCode = SQLITE_APP_DISPLAY_PARAM_CC;
     Size    = sizeof(TestMsg.DisplayParam) - 1;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
 
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
-    UtAssert_STUB_COUNT(TEMPLATE_APP_DisplayParamCmd, 1);
+    UtAssert_STUB_COUNT(SQLITE_APP_DisplayParamCmd, 1);
     UtAssert_UINT32_EQ(EventTest.MatchCount, 4);
 
     /* test an invalid CC */
     FcnCode = 1000;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
-    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_CC_ERR_EID, "Invalid ground command code: CC = %d");
-    TEMPLATE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
+    UT_CHECKEVENT_SETUP(&EventTest, SQLITE_APP_CC_ERR_EID, "Invalid ground command code: CC = %d");
+    SQLITE_APP_ProcessGroundCommand(&TestMsg.SBBuf);
 
     /*
      * Confirm that the event was generated only _once_
@@ -230,11 +230,11 @@ void Test_TEMPLATE_APP_ProcessGroundCommand(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_TEMPLATE_APP_VerifyCmdLength(void)
+void Test_SQLITE_APP_VerifyCmdLength(void)
 {
     /*
      * Test Case For:
-     * bool TEMPLATE_APP_VerifyCmdLength
+     * bool SQLITE_APP_VerifyCmdLength
      */
     UT_CheckEvent_t   EventTest;
     size_t            size    = 1;
@@ -245,10 +245,10 @@ void Test_TEMPLATE_APP_VerifyCmdLength(void)
      * test a match case
      */
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &size, sizeof(size), false);
-    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_CMD_LEN_ERR_EID,
+    UT_CHECKEVENT_SETUP(&EventTest, SQLITE_APP_CMD_LEN_ERR_EID,
                         "Invalid Msg length: ID = 0x%X,  CC = %u, Len = %u, Expected = %u");
 
-    TEMPLATE_APP_VerifyCmdLength(NULL, size);
+    SQLITE_APP_VerifyCmdLength(NULL, size);
 
     /*
      * Confirm that the event was NOT generated
@@ -261,7 +261,7 @@ void Test_TEMPLATE_APP_VerifyCmdLength(void)
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &size, sizeof(size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &msgid, sizeof(msgid), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &fcncode, sizeof(fcncode), false);
-    TEMPLATE_APP_VerifyCmdLength(NULL, size + 1);
+    SQLITE_APP_VerifyCmdLength(NULL, size + 1);
 
     /*
      * Confirm that the event WAS generated
@@ -274,7 +274,7 @@ void Test_TEMPLATE_APP_VerifyCmdLength(void)
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(TEMPLATE_APP_TaskPipe);
-    ADD_TEST(TEMPLATE_APP_ProcessGroundCommand);
-    ADD_TEST(TEMPLATE_APP_VerifyCmdLength);
+    ADD_TEST(SQLITE_APP_TaskPipe);
+    ADD_TEST(SQLITE_APP_ProcessGroundCommand);
+    ADD_TEST(SQLITE_APP_VerifyCmdLength);
 }

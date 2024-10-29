@@ -18,26 +18,26 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP command function codes
+ *   Specification for the SQLITE_APP command function codes
  *
  * @note
  *   This file should be strictly limited to the command/function code (CC)
  *   macro definitions.  Other definitions such as enums, typedefs, or other
  *   macros should be placed in the msgdefs.h or msg.h files.
  */
-#ifndef TEMPLATE_APP_FCNCODES_H
-#define TEMPLATE_APP_FCNCODES_H
+#ifndef SQLITE_APP_FCNCODES_H
+#define SQLITE_APP_FCNCODES_H
 
 /************************************************************************
  * Macro Definitions
  ************************************************************************/
 
 /*
-** Template App command codes
+** Sqlite App command codes
 */
-#define TEMPLATE_APP_NOOP_CC           0
-#define TEMPLATE_APP_RESET_COUNTERS_CC 1
-#define TEMPLATE_APP_PROCESS_CC        2
-#define TEMPLATE_APP_DISPLAY_PARAM_CC  3
+#define SQLITE_APP_NOOP_CC           0
+#define SQLITE_APP_RESET_COUNTERS_CC 1
+#define SQLITE_APP_PROCESS_CC        2
+#define SQLITE_APP_DISPLAY_PARAM_CC  3
 
 #endif

@@ -18,34 +18,34 @@
 
 /**
  * \file
- *   This file contains the source code for the Template App utility functions
+ *   This file contains the source code for the Sqlite App utility functions
  */
 
 /*
 ** Include Files:
 */
-#include "template_app.h"
-#include "template_app_eventids.h"
-#include "template_tbl.h"
-#include "template_app_utils.h"
+#include "sqlite_app.h"
+#include "sqlite_app_eventids.h"
+#include "sqlite_tbl.h"
+#include "sqlite_app_utils.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 /*                                                                 */
 /* Verify contents of First Example Table buffer contents                  */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData)
+CFE_Status_t SQLITE_APP_TblValidationFunc(void *TblData)
 {
     CFE_Status_t               ReturnCode = CFE_SUCCESS;
-    TEMPLATE_APP_ExampleTable_t *TblDataPtr = (TEMPLATE_APP_ExampleTable_t *)TblData;
+    SQLITE_APP_ExampleTable_t *TblDataPtr = (SQLITE_APP_ExampleTable_t *)TblData;
 
     /*
     ** Example Table Validation
     */
-    if (TblDataPtr->Int1 > TEMPLATE_APP_TBL_ELEMENT_1_MAX)
+    if (TblDataPtr->Int1 > SQLITE_APP_TBL_ELEMENT_1_MAX)
     {
         /* First element is out of range, return an appropriate error code */
-        ReturnCode = TEMPLATE_APP_TABLE_OUT_OF_RANGE_ERR_CODE;
+        ReturnCode = SQLITE_APP_TABLE_OUT_OF_RANGE_ERR_CODE;
     }
 
     return ReturnCode;
@@ -56,7 +56,7 @@ CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData)
 /* Output CRC                                                      */
 /*                                                                 */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-void TEMPLATE_APP_GetCrc(const char *TableName)
+void SQLITE_APP_GetCrc(const char *TableName)
 {
     CFE_Status_t   status;
     uint32         Crc;
@@ -65,11 +65,11 @@ void TEMPLATE_APP_GetCrc(const char *TableName)
     status = CFE_TBL_GetInfo(&TblInfoPtr, TableName);
     if (status != CFE_SUCCESS)
     {
-        CFE_ES_WriteToSysLog("Template App: Error Getting Example Table Info");
+        CFE_ES_WriteToSysLog("Sqlite App: Error Getting Example Table Info");
     }
     else
     {
         Crc = TblInfoPtr.Crc;
-        CFE_ES_WriteToSysLog("Template App: CRC: 0x%08lX\n\n", (unsigned long)Crc);
+        CFE_ES_WriteToSysLog("Sqlite App: CRC: 0x%08lX\n\n", (unsigned long)Crc);
     }
 }

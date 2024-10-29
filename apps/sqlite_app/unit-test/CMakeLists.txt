@@ -2,7 +2,7 @@
 #
 # Coverage Unit Test build recipe
 #
-# This CMake file contains the recipe for building the template unit tests.
+# This CMake file contains the recipe for building the sqlite unit tests.
 # It is invoked from the parent directory when unit tests are enabled.
 #
 ##################################################################
@@ -22,21 +22,21 @@
 include_directories(../fsw/src)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/inc)
 
-add_cfe_coverage_stubs(template_app
-  stubs/template_app_global_stubs.c
-  stubs/template_app_stubs.c
-  stubs/template_app_cmds_stubs.c
-  stubs/template_app_dispatch_stubs.c
-  stubs/template_app_utils_stubs.c
+add_cfe_coverage_stubs(sqlite_app
+  stubs/sqlite_app_global_stubs.c
+  stubs/sqlite_app_stubs.c
+  stubs/sqlite_app_cmds_stubs.c
+  stubs/sqlite_app_dispatch_stubs.c
+  stubs/sqlite_app_utils_stubs.c
 )
 
-add_library(template_app_ut_common STATIC
+add_library(sqlite_app_ut_common STATIC
     common/eventcheck.c
     common/setup.c
 )
 
-target_include_directories(template_app_ut_common PUBLIC common)
-target_link_libraries(template_app_ut_common core_api ut_assert)
+target_include_directories(sqlite_app_ut_common PUBLIC common)
+target_link_libraries(sqlite_app_ut_common core_api ut_assert)
 
 
 # Generate a dedicated "testrunner" executable for each test file
@@ -55,9 +55,9 @@ foreach(SRCFILE ${APP_SRC_FILES})
     set(TESTS_SOURCE_FILE "${CMAKE_CURRENT_SOURCE_DIR}/coveragetest/${TESTS_NAME}.c")
 
     # Create the coverage test executable
-    add_cfe_coverage_test(template_app "${UNIT_NAME}" "${TESTS_SOURCE_FILE}" "../${SRCFILE}")
-    add_cfe_coverage_dependency(template_app "${UNIT_NAME}" template_app)
-    target_link_libraries(coverage-template_app-${UNIT_NAME}-testrunner coverage-template_app-stubs template_app_ut_common)
+    add_cfe_coverage_test(sqlite_app "${UNIT_NAME}" "${TESTS_SOURCE_FILE}" "../${SRCFILE}")
+    add_cfe_coverage_dependency(sqlite_app "${UNIT_NAME}" sqlite_app)
+    target_link_libraries(coverage-sqlite_app-${UNIT_NAME}-testrunner coverage-sqlite_app-stubs sqlite_app_ut_common)
 
 endforeach()
 

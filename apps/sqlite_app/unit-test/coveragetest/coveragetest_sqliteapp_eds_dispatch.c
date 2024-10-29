@@ -34,10 +34,10 @@
  * Includes
  */
 
-#include "template_app_coveragetest_common.h"
-#include "template_app.h"
-#include "template_app_dispatch.h"
-#include "template_app_cmds.h"
+#include "sqlite_app_coveragetest_common.h"
+#include "sqlite_app.h"
+#include "sqlite_app_dispatch.h"
+#include "sqlite_app_cmds.h"
 
 /*
 **********************************************************************************
@@ -45,11 +45,11 @@
 **********************************************************************************
 */
 
-void Test_TEMPLATE_APP_TaskPipe(void)
+void Test_SQLITE_APP_TaskPipe(void)
 {
     /*
      * Test Case For:
-     * void TEMPLATE_APP_TaskPipe
+     * void SQLITE_APP_TaskPipe
      */
 }
 
@@ -58,5 +58,5 @@ void Test_TEMPLATE_APP_TaskPipe(void)
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(TEMPLATE_APP_TaskPipe);
+    ADD_TEST(SQLITE_APP_TaskPipe);
 }

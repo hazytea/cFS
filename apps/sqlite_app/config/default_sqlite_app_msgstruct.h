@@ -18,22 +18,22 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP command and telemetry
+ *   Specification for the SQLITE_APP command and telemetry
  *   message data types.
  *
  * @note
  *   Constants and enumerated types related to these message structures
- *   are defined in template_app_msgdefs.h.
+ *   are defined in sqlite_app_msgdefs.h.
  */
-#ifndef TEMPLATE_APP_MSGSTRUCT_H
-#define TEMPLATE_APP_MSGSTRUCT_H
+#ifndef SQLITE_APP_MSGSTRUCT_H
+#define SQLITE_APP_MSGSTRUCT_H
 
 /************************************************************************
  * Includes
  ************************************************************************/
 
-#include "template_app_mission_cfg.h"
-#include "template_app_msgdefs.h"
+#include "sqlite_app_mission_cfg.h"
+#include "sqlite_app_msgdefs.h"
 #include "cfe_msg_hdr.h"
 
 /*************************************************************************/
@@ -48,38 +48,38 @@
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} TEMPLATE_APP_NoopCmd_t;
+} SQLITE_APP_NoopCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} TEMPLATE_APP_ResetCountersCmd_t;
+} SQLITE_APP_ResetCountersCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} TEMPLATE_APP_ProcessCmd_t;
+} SQLITE_APP_ProcessCmd_t;
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t           CommandHeader; /**< \brief Command header */
-    TEMPLATE_APP_DisplayParam_Payload_t Payload;
-} TEMPLATE_APP_DisplayParamCmd_t;
+    SQLITE_APP_DisplayParam_Payload_t Payload;
+} SQLITE_APP_DisplayParamCmd_t;
 
 /*************************************************************************/
 /*
-** Type definition (Template App housekeeping)
+** Type definition (Sqlite App housekeeping)
 */
 
 typedef struct
 {
     CFE_MSG_CommandHeader_t CommandHeader; /**< \brief Command header */
-} TEMPLATE_APP_SendHkCmd_t;
+} SQLITE_APP_SendHkCmd_t;
 
 typedef struct
 {
     CFE_MSG_TelemetryHeader_t  TelemetryHeader; /**< \brief Telemetry header */
-    TEMPLATE_APP_HkTlm_Payload_t Payload;         /**< \brief Telemetry payload */
-} TEMPLATE_APP_HkTlm_t;
+    SQLITE_APP_HkTlm_Payload_t Payload;         /**< \brief Telemetry payload */
+} SQLITE_APP_HkTlm_t;
 
-#endif /* TEMPLATE_APP_MSGSTRUCT_H */
+#endif /* SQLITE_APP_MSGSTRUCT_H */

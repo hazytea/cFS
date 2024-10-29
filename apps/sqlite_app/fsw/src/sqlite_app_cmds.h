@@ -18,22 +18,22 @@
 
 /**
  * @file
- *   This file contains the prototypes for the Template App Ground Command-handling functions
+ *   This file contains the prototypes for the Sqlite App Ground Command-handling functions
  */
 
-#ifndef TEMPLATE_APP_CMDS_H
-#define TEMPLATE_APP_CMDS_H
+#ifndef SQLITE_APP_CMDS_H
+#define SQLITE_APP_CMDS_H
 
 /*
 ** Required header files.
 */
 #include "cfe_error.h"
-#include "template_app_msg.h"
+#include "sqlite_app_msg.h"
 
-CFE_Status_t TEMPLATE_APP_SendHkCmd(const TEMPLATE_APP_SendHkCmd_t *Msg);
-CFE_Status_t TEMPLATE_APP_ResetCountersCmd(const TEMPLATE_APP_ResetCountersCmd_t *Msg);
-CFE_Status_t TEMPLATE_APP_ProcessCmd(const TEMPLATE_APP_ProcessCmd_t *Msg);
-CFE_Status_t TEMPLATE_APP_NoopCmd(const TEMPLATE_APP_NoopCmd_t *Msg);
-CFE_Status_t TEMPLATE_APP_DisplayParamCmd(const TEMPLATE_APP_DisplayParamCmd_t *Msg);
+CFE_Status_t SQLITE_APP_SendHkCmd(const SQLITE_APP_SendHkCmd_t *Msg);
+CFE_Status_t SQLITE_APP_ResetCountersCmd(const SQLITE_APP_ResetCountersCmd_t *Msg);
+CFE_Status_t SQLITE_APP_ProcessCmd(const SQLITE_APP_ProcessCmd_t *Msg);
+CFE_Status_t SQLITE_APP_NoopCmd(const SQLITE_APP_NoopCmd_t *Msg);
+CFE_Status_t SQLITE_APP_DisplayParamCmd(const SQLITE_APP_DisplayParamCmd_t *Msg);
 
-#endif /* TEMPLATE_APP_CMDS_H */
+#endif /* SQLITE_APP_CMDS_H */

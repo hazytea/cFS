@@ -18,20 +18,20 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP table related
+ *   Specification for the SQLITE_APP table related
  *   constant definitions.
  *
  * @note
  *   These Macro definitions have been put in this file (instead of
- *   template_tbl.h). DO NOT PUT ANY TYPEDEFS OR
+ *   sqlite_tbl.h). DO NOT PUT ANY TYPEDEFS OR
  *   STRUCTURE DEFINITIONS IN THIS FILE!
- *   ADD THEM TO template_tbl.h IF NEEDED!
+ *   ADD THEM TO sqlite_tbl.h IF NEEDED!
  */
-#ifndef TEMPLATE_APP_TBLDEFS_H
-#define TEMPLATE_APP_TBLDEFS_H
+#ifndef SQLITE_APP_TBLDEFS_H
+#define SQLITE_APP_TBLDEFS_H
 
 #include "common_types.h"
-#include "template_app_mission_cfg.h"
+#include "sqlite_app_mission_cfg.h"
 
 /*
 ** Example Table structure
@@ -40,6 +40,6 @@ typedef struct
 {
     uint16 Int1;
     uint16 Int2;
-} TEMPLATE_APP_ExampleTable_t;
+} SQLITE_APP_ExampleTable_t;
 
 #endif

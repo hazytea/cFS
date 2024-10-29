@@ -22,30 +22,30 @@
  * Auto-Generated stub implementations for functions defined in sample_app header
  */
 
-#include "template_app.h"
+#include "sqlite_app.h"
 #include "utgenstub.h"
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_Init()
+ * Generated stub function for SQLITE_APP_Init()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_Init(void)
+CFE_Status_t SQLITE_APP_Init(void)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_Init, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_Init, CFE_Status_t);
 
-    UT_GenStub_Execute(TEMPLATE_APP_Init, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_Init, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_Init, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_Init, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_Main()
+ * Generated stub function for SQLITE_APP_Main()
  * ----------------------------------------------------
  */
-void TEMPLATE_APP_Main(void)
+void SQLITE_APP_Main(void)
 {
 
-    UT_GenStub_Execute(TEMPLATE_APP_Main, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_Main, Basic, NULL);
 }

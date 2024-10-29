@@ -18,11 +18,11 @@
 
 /*
 ** Purpose:
-** Coverage Unit Test cases for the TEMPLATE Application
+** Coverage Unit Test cases for the SQLITE Application
 **
 ** Notes:
 ** This implements various test cases to exercise all code
-** paths through all functions defined in the TEMPLATE application.
+** paths through all functions defined in the SQLITE application.
 **
 ** It is primarily focused at providing examples of the various
 ** stub configurations, hook functions, and wrapper calls that
@@ -39,7 +39,7 @@
 #include "uttest.h"
 #include "utstubs.h"
 
-void Template_UT_Setup(void);
-void Template_UT_TearDown(void);
+void Sqlite_UT_Setup(void);
+void Sqlite_UT_TearDown(void);
 
 #endif

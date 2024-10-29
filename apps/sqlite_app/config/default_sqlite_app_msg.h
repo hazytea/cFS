@@ -18,21 +18,21 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP command and telemetry
+ *   Specification for the SQLITE_APP command and telemetry
  *   message data types.
  *
- * This is a compatibility header for the "template_app_msg.h" file that has
+ * This is a compatibility header for the "sqlite_app_msg.h" file that has
  * traditionally provided the message definitions for cFS apps.
  *
  * @note This file may be overridden/superceded by mission-provided defintions
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef TEMPLATE_APP_MSG_H
-#define TEMPLATE_APP_MSG_H
+#ifndef SQLITE_APP_MSG_H
+#define SQLITE_APP_MSG_H
 
-#include "template_app_mission_cfg.h"
-#include "template_app_msgdefs.h"
-#include "template_app_msgstruct.h"
+#include "sqlite_app_mission_cfg.h"
+#include "sqlite_app_msgdefs.h"
+#include "sqlite_app_msgstruct.h"
 
 #endif

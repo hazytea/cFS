@@ -20,9 +20,9 @@
  * @file
  *   Define TO Lab Performance IDs
  */
-#ifndef TEMPLATE_APP_PERFIDS_H
-#define TEMPLATE_APP_PERFIDS_H
+#ifndef SQLITE_APP_PERFIDS_H
+#define SQLITE_APP_PERFIDS_H
 
-#define TEMPLATE_APP_PERF_ID 91
+#define SQLITE_APP_PERF_ID 91
 
 #endif

@@ -18,18 +18,18 @@
 
 /**
  * @file
- *   This file contains the prototypes for the Template App utility functions
+ *   This file contains the prototypes for the Sqlite App utility functions
  */
 
-#ifndef TEMPLATE_APP_UTILS_H
-#define TEMPLATE_APP_UTILS_H
+#ifndef SQLITE_APP_UTILS_H
+#define SQLITE_APP_UTILS_H
 
 /*
 ** Required header files.
 */
-#include "template_app.h"
+#include "sqlite_app.h"
 
-CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData);
-void         TEMPLATE_APP_GetCrc(const char *TableName);
+CFE_Status_t SQLITE_APP_TblValidationFunc(void *TblData);
+void         SQLITE_APP_GetCrc(const char *TableName);
 
-#endif /* TEMPLATE_APP_UTILS_H */
+#endif /* SQLITE_APP_UTILS_H */

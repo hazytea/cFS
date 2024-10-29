@@ -18,20 +18,20 @@
 
 /**
  * \file
- *   This file contains the source code for the Template App Ground Command-handling functions
+ *   This file contains the source code for the Sqlite App Ground Command-handling functions
  */
 
 /*
 ** Include Files:
 */
-#include "template_app.h"
-#include "template_app_cmds.h"
-#include "template_app_msgids.h"
-#include "template_app_eventids.h"
-#include "template_app_version.h"
-#include "template_tbl.h"
-#include "template_app_utils.h"
-#include "template_app_msg.h"
+#include "sqlite_app.h"
+#include "sqlite_app_cmds.h"
+#include "sqlite_app_msgids.h"
+#include "sqlite_app_eventids.h"
+#include "sqlite_app_version.h"
+#include "sqlite_tbl.h"
+#include "sqlite_app_utils.h"
+#include "sqlite_app_msg.h"
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 /*                                                                            */
@@ -41,28 +41,28 @@
 /*         telemetry, packetize it and send it to the housekeeping task via   */
 /*         the software bus                                                   */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-CFE_Status_t TEMPLATE_APP_SendHkCmd(const TEMPLATE_APP_SendHkCmd_t *Msg)
+CFE_Status_t SQLITE_APP_SendHkCmd(const SQLITE_APP_SendHkCmd_t *Msg)
 {
     int i;
 
     /*
     ** Get command execution counters...
     */
-    TEMPLATE_APP_Data.HkTlm.Payload.CommandErrorCounter = TEMPLATE_APP_Data.ErrCounter;
-    TEMPLATE_APP_Data.HkTlm.Payload.CommandCounter      = TEMPLATE_APP_Data.CmdCounter;
+    SQLITE_APP_Data.HkTlm.Payload.CommandErrorCounter = SQLITE_APP_Data.ErrCounter;
+    SQLITE_APP_Data.HkTlm.Payload.CommandCounter      = SQLITE_APP_Data.CmdCounter;
 
     /*
     ** Send housekeeping telemetry packet...
     */
-    CFE_SB_TimeStampMsg(CFE_MSG_PTR(TEMPLATE_APP_Data.HkTlm.TelemetryHeader));
-    CFE_SB_TransmitMsg(CFE_MSG_PTR(TEMPLATE_APP_Data.HkTlm.TelemetryHeader), true);
+    CFE_SB_TimeStampMsg(CFE_MSG_PTR(SQLITE_APP_Data.HkTlm.TelemetryHeader));
+    CFE_SB_TransmitMsg(CFE_MSG_PTR(SQLITE_APP_Data.HkTlm.TelemetryHeader), true);
 
     /*
     ** Manage any pending table loads, validations, etc.
     */
-    for (i = 0; i < TEMPLATE_APP_NUMBER_OF_TABLES; i++)
+    for (i = 0; i < SQLITE_APP_NUMBER_OF_TABLES; i++)
     {
-        CFE_TBL_Manage(TEMPLATE_APP_Data.TblHandles[i]);
+        CFE_TBL_Manage(SQLITE_APP_Data.TblHandles[i]);
     }
 
     return CFE_SUCCESS;
@@ -70,15 +70,15 @@ CFE_Status_t TEMPLATE_APP_SendHkCmd(const TEMPLATE_APP_SendHkCmd_t *Msg)
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 /*                                                                            */
-/* TEMPLATE NOOP commands                                                       */
+/* SQLITE NOOP commands                                                       */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-CFE_Status_t TEMPLATE_APP_NoopCmd(const TEMPLATE_APP_NoopCmd_t *Msg)
+CFE_Status_t SQLITE_APP_NoopCmd(const SQLITE_APP_NoopCmd_t *Msg)
 {
-    TEMPLATE_APP_Data.CmdCounter++;
+    SQLITE_APP_Data.CmdCounter++;
 
-    CFE_EVS_SendEvent(TEMPLATE_APP_NOOP_INF_EID, CFE_EVS_EventType_INFORMATION, "TEMPLATE: NOOP command %s",
-                      TEMPLATE_APP_VERSION);
+    CFE_EVS_SendEvent(SQLITE_APP_NOOP_INF_EID, CFE_EVS_EventType_INFORMATION, "SQLITE: NOOP command %s",
+                      SQLITE_APP_VERSION);
 
     return CFE_SUCCESS;
 }
@@ -90,12 +90,12 @@ CFE_Status_t TEMPLATE_APP_NoopCmd(const TEMPLATE_APP_NoopCmd_t *Msg)
 /*         part of the task telemetry.                                        */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-CFE_Status_t TEMPLATE_APP_ResetCountersCmd(const TEMPLATE_APP_ResetCountersCmd_t *Msg)
+CFE_Status_t SQLITE_APP_ResetCountersCmd(const SQLITE_APP_ResetCountersCmd_t *Msg)
 {
-    TEMPLATE_APP_Data.CmdCounter = 0;
-    TEMPLATE_APP_Data.ErrCounter = 0;
+    SQLITE_APP_Data.CmdCounter = 0;
+    SQLITE_APP_Data.ErrCounter = 0;
 
-    CFE_EVS_SendEvent(TEMPLATE_APP_RESET_INF_EID, CFE_EVS_EventType_INFORMATION, "TEMPLATE: RESET command");
+    CFE_EVS_SendEvent(SQLITE_APP_RESET_INF_EID, CFE_EVS_EventType_INFORMATION, "SQLITE: RESET command");
 
     return CFE_SUCCESS;
 }
@@ -106,32 +106,32 @@ CFE_Status_t TEMPLATE_APP_ResetCountersCmd(const TEMPLATE_APP_ResetCountersCmd_t
 /*         This function Process Ground Station Command                       */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * *  * * * * * * *  * *  * * * * */
-CFE_Status_t TEMPLATE_APP_ProcessCmd(const TEMPLATE_APP_ProcessCmd_t *Msg)
+CFE_Status_t SQLITE_APP_ProcessCmd(const SQLITE_APP_ProcessCmd_t *Msg)
 {
     CFE_Status_t               status;
     void *                     TblAddr;
-    TEMPLATE_APP_ExampleTable_t *TblPtr;
-    const char *               TableName = "TEMPLATE_APP.ExampleTable";
+    SQLITE_APP_ExampleTable_t *TblPtr;
+    const char *               TableName = "SQLITE_APP.ExampleTable";
 
     /* Example Table */
 
-    status = CFE_TBL_GetAddress(&TblAddr, TEMPLATE_APP_Data.TblHandles[0]);
+    status = CFE_TBL_GetAddress(&TblAddr, SQLITE_APP_Data.TblHandles[0]);
 
     if (status < CFE_SUCCESS)
     {
-        CFE_ES_WriteToSysLog("Template App: Fail to get table address: 0x%08lx", (unsigned long)status);
+        CFE_ES_WriteToSysLog("Sqlite App: Fail to get table address: 0x%08lx", (unsigned long)status);
         return status;
     }
 
     TblPtr = TblAddr;
-    CFE_ES_WriteToSysLog("Template App: Example Table Value 1: %d  Value 2: %d", TblPtr->Int1, TblPtr->Int2);
+    CFE_ES_WriteToSysLog("Sqlite App: Example Table Value 1: %d  Value 2: %d", TblPtr->Int1, TblPtr->Int2);
 
-    TEMPLATE_APP_GetCrc(TableName);
+    SQLITE_APP_GetCrc(TableName);
 
-    status = CFE_TBL_ReleaseAddress(TEMPLATE_APP_Data.TblHandles[0]);
+    status = CFE_TBL_ReleaseAddress(SQLITE_APP_Data.TblHandles[0]);
     if (status != CFE_SUCCESS)
     {
-        CFE_ES_WriteToSysLog("Template App: Fail to release table address: 0x%08lx", (unsigned long)status);
+        CFE_ES_WriteToSysLog("Sqlite App: Fail to release table address: 0x%08lx", (unsigned long)status);
         return status;
     }
 
@@ -143,10 +143,10 @@ CFE_Status_t TEMPLATE_APP_ProcessCmd(const TEMPLATE_APP_ProcessCmd_t *Msg)
 /* A simple example command that displays a passed-in value                   */
 /*                                                                            */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
-CFE_Status_t TEMPLATE_APP_DisplayParamCmd(const TEMPLATE_APP_DisplayParamCmd_t *Msg)
+CFE_Status_t SQLITE_APP_DisplayParamCmd(const SQLITE_APP_DisplayParamCmd_t *Msg)
 {
-    CFE_EVS_SendEvent(TEMPLATE_APP_VALUE_INF_EID, CFE_EVS_EventType_INFORMATION,
-                      "TEMPLATE_APP: ValU32=%lu, ValI16=%d, ValStr=%s", (unsigned long)Msg->Payload.ValU32,
+    CFE_EVS_SendEvent(SQLITE_APP_VALUE_INF_EID, CFE_EVS_EventType_INFORMATION,
+                      "SQLITE_APP: ValU32=%lu, ValI16=%d, ValStr=%s", (unsigned long)Msg->Payload.ValU32,
                       (int)Msg->Payload.ValI16, Msg->Payload.ValStr);
 
     return CFE_SUCCESS;

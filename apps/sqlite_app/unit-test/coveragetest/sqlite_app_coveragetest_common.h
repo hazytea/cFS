@@ -22,8 +22,8 @@
  * Common definitions for all sample_app coverage tests
  */
 
-#ifndef TEMPLATE_APP_COVERAGETEST_COMMON_H
-#define TEMPLATE_APP_COVERAGETEST_COMMON_H
+#ifndef SQLITE_APP_COVERAGETEST_COMMON_H
+#define SQLITE_APP_COVERAGETEST_COMMON_H
 
 /*
  * Includes
@@ -37,18 +37,18 @@
 #include "eventcheck.h"
 
 #include "cfe.h"
-#include "template_app_eventids.h"
-#include "template_app.h"
-#include "template_app_dispatch.h"
-#include "template_app_cmds.h"
-#include "template_app_utils.h"
-#include "template_app_msgids.h"
-#include "template_app_msg.h"
-#include "template_tbl.h"
+#include "sqlite_app_eventids.h"
+#include "sqlite_app.h"
+#include "sqlite_app_dispatch.h"
+#include "sqlite_app_cmds.h"
+#include "sqlite_app_utils.h"
+#include "sqlite_app_msgids.h"
+#include "sqlite_app_msg.h"
+#include "sqlite_tbl.h"
 
 /*
  * Macro to add a test case to the list of tests to execute
  */
 #define ADD_TEST(test) UtTest_Add((Test_##test), Sample_UT_Setup, Sample_UT_TearDown, #test)
 
-#endif /* TEMPLATE_APP_COVERAGETEST_COMMON_H */
+#endif /* SQLITE_APP_COVERAGETEST_COMMON_H */

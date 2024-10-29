@@ -19,88 +19,88 @@
 /**
  * @file
  *
- * Auto-Generated stub implementations for functions defined in template_app_cmds header
+ * Auto-Generated stub implementations for functions defined in sqlite_app_cmds header
  */
 
-#include "template_app_cmds.h"
+#include "sqlite_app_cmds.h"
 #include "utgenstub.h"
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_DisplayParamCmd()
+ * Generated stub function for SQLITE_APP_DisplayParamCmd()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_DisplayParamCmd(const TEMPLATE_APP_DisplayParamCmd_t *Msg)
+CFE_Status_t SQLITE_APP_DisplayParamCmd(const SQLITE_APP_DisplayParamCmd_t *Msg)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_DisplayParamCmd, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_DisplayParamCmd, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_DisplayParamCmd, const TEMPLATE_APP_DisplayParamCmd_t *, Msg);
+    UT_GenStub_AddParam(SQLITE_APP_DisplayParamCmd, const SQLITE_APP_DisplayParamCmd_t *, Msg);
 
-    UT_GenStub_Execute(TEMPLATE_APP_DisplayParamCmd, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_DisplayParamCmd, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_DisplayParamCmd, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_DisplayParamCmd, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_NoopCmd()
+ * Generated stub function for SQLITE_APP_NoopCmd()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_NoopCmd(const TEMPLATE_APP_NoopCmd_t *Msg)
+CFE_Status_t SQLITE_APP_NoopCmd(const SQLITE_APP_NoopCmd_t *Msg)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_NoopCmd, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_NoopCmd, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_NoopCmd, const TEMPLATE_APP_NoopCmd_t *, Msg);
+    UT_GenStub_AddParam(SQLITE_APP_NoopCmd, const SQLITE_APP_NoopCmd_t *, Msg);
 
-    UT_GenStub_Execute(TEMPLATE_APP_NoopCmd, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_NoopCmd, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_NoopCmd, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_NoopCmd, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_ProcessCmd()
+ * Generated stub function for SQLITE_APP_ProcessCmd()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_ProcessCmd(const TEMPLATE_APP_ProcessCmd_t *Msg)
+CFE_Status_t SQLITE_APP_ProcessCmd(const SQLITE_APP_ProcessCmd_t *Msg)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_ProcessCmd, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_ProcessCmd, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_ProcessCmd, const TEMPLATE_APP_ProcessCmd_t *, Msg);
+    UT_GenStub_AddParam(SQLITE_APP_ProcessCmd, const SQLITE_APP_ProcessCmd_t *, Msg);
 
-    UT_GenStub_Execute(TEMPLATE_APP_ProcessCmd, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_ProcessCmd, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_ProcessCmd, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_ProcessCmd, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_ResetCountersCmd()
+ * Generated stub function for SQLITE_APP_ResetCountersCmd()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_ResetCountersCmd(const TEMPLATE_APP_ResetCountersCmd_t *Msg)
+CFE_Status_t SQLITE_APP_ResetCountersCmd(const SQLITE_APP_ResetCountersCmd_t *Msg)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_ResetCountersCmd, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_ResetCountersCmd, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_ResetCountersCmd, const TEMPLATE_APP_ResetCountersCmd_t *, Msg);
+    UT_GenStub_AddParam(SQLITE_APP_ResetCountersCmd, const SQLITE_APP_ResetCountersCmd_t *, Msg);
 
-    UT_GenStub_Execute(TEMPLATE_APP_ResetCountersCmd, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_ResetCountersCmd, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_ResetCountersCmd, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_ResetCountersCmd, CFE_Status_t);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_SendHkCmd()
+ * Generated stub function for SQLITE_APP_SendHkCmd()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_SendHkCmd(const TEMPLATE_APP_SendHkCmd_t *Msg)
+CFE_Status_t SQLITE_APP_SendHkCmd(const SQLITE_APP_SendHkCmd_t *Msg)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_SendHkCmd, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_SendHkCmd, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_SendHkCmd, const TEMPLATE_APP_SendHkCmd_t *, Msg);
+    UT_GenStub_AddParam(SQLITE_APP_SendHkCmd, const SQLITE_APP_SendHkCmd_t *, Msg);
 
-    UT_GenStub_Execute(TEMPLATE_APP_SendHkCmd, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_SendHkCmd, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_SendHkCmd, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_SendHkCmd, CFE_Status_t);
 }

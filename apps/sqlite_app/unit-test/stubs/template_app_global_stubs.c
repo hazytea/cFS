@@ -17,11 +17,11 @@
  * limitations under the License.
  ************************************************************************/
 
-#include "template_app.h"
+#include "sqlite_app.h"
 
 /* UT includes */
 #include "uttest.h"
 #include "utassert.h"
 #include "utstubs.h"
 
-TEMPLATE_APP_Data_t TEMPLATE_APP_Data;
+SQLITE_APP_Data_t SQLITE_APP_Data;

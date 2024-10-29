@@ -19,36 +19,36 @@
 /**
  * @file
  *
- * Auto-Generated stub implementations for functions defined in template_app_utils header
+ * Auto-Generated stub implementations for functions defined in sqlite_app_utils header
  */
 
-#include "template_app_utils.h"
+#include "sqlite_app_utils.h"
 #include "utgenstub.h"
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_GetCrc()
+ * Generated stub function for SQLITE_APP_GetCrc()
  * ----------------------------------------------------
  */
-void TEMPLATE_APP_GetCrc(const char *TableName)
+void SQLITE_APP_GetCrc(const char *TableName)
 {
-    UT_GenStub_AddParam(TEMPLATE_APP_GetCrc, const char *, TableName);
+    UT_GenStub_AddParam(SQLITE_APP_GetCrc, const char *, TableName);
 
-    UT_GenStub_Execute(TEMPLATE_APP_GetCrc, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_GetCrc, Basic, NULL);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_TblValidationFunc()
+ * Generated stub function for SQLITE_APP_TblValidationFunc()
  * ----------------------------------------------------
  */
-CFE_Status_t TEMPLATE_APP_TblValidationFunc(void *TblData)
+CFE_Status_t SQLITE_APP_TblValidationFunc(void *TblData)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_TblValidationFunc, CFE_Status_t);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_TblValidationFunc, CFE_Status_t);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_TblValidationFunc, void *, TblData);
+    UT_GenStub_AddParam(SQLITE_APP_TblValidationFunc, void *, TblData);
 
-    UT_GenStub_Execute(TEMPLATE_APP_TblValidationFunc, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_TblValidationFunc, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_TblValidationFunc, CFE_Status_t);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_TblValidationFunc, CFE_Status_t);
 }

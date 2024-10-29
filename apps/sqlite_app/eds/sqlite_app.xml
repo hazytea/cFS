@@ -29,11 +29,11 @@
 
 -->
 <PackageFile xmlns="http://www.ccsds.org/schema/sois/seds">
-  <Package name="TEMPLATE_APP" shortDescription="Template Application Package">
+  <Package name="SQLITE_APP" shortDescription="Sqlite Application Package">
 
     <DataTypeSet>
 
-      <StringDataType name="ExampleString" length="${TEMPLATE_APP/STRING_VAL_LEN}" />
+      <StringDataType name="ExampleString" length="${SQLITE_APP/STRING_VAL_LEN}" />
 
       <ContainerDataType name="DisplayParam_Payload" shortDescription="Example Command with a payload/argument">
         <EntryList>
@@ -43,7 +43,7 @@
         </EntryList>
       </ContainerDataType>
 
-      <ContainerDataType name="HkTlm_Payload" shortDescription="Template App Housekeeping Content">
+      <ContainerDataType name="HkTlm_Payload" shortDescription="Sqlite App Housekeeping Content">
         <EntryList>
           <Entry name="CommandCounter" type="BASE_TYPES/uint8" />
           <Entry name="CommandErrorCounter" type="BASE_TYPES/uint8" />
@@ -122,9 +122,9 @@
         </RequiredInterfaceSet>
         <Implementation>
           <VariableSet>
-            <Variable type="BASE_TYPES/uint16" readOnly="true" name="CmdTopicId" initialValue="${CFE_MISSION/TEMPLATE_APP_CMD_TOPICID}" />
-            <Variable type="BASE_TYPES/uint16" readOnly="true" name="SendHkTopicId" initialValue="${CFE_MISSION/TEMPLATE_APP_SEND_HK_TOPICID}" />
-            <Variable type="BASE_TYPES/uint16" readOnly="true" name="HkTlmTopicId" initialValue="${CFE_MISSION/TEMPLATE_APP_HK_TLM_TOPICID}" />
+            <Variable type="BASE_TYPES/uint16" readOnly="true" name="CmdTopicId" initialValue="${CFE_MISSION/SQLITE_APP_CMD_TOPICID}" />
+            <Variable type="BASE_TYPES/uint16" readOnly="true" name="SendHkTopicId" initialValue="${CFE_MISSION/SQLITE_APP_SEND_HK_TOPICID}" />
+            <Variable type="BASE_TYPES/uint16" readOnly="true" name="HkTlmTopicId" initialValue="${CFE_MISSION/SQLITE_APP_HK_TLM_TOPICID}" />
           </VariableSet>
           <!-- Assign fixed numbers to the "TopicId" parameter of each interface -->
           <ParameterMapSet>

@@ -17,10 +17,10 @@
  ************************************************************************/
 
 /*
-** File: coveragetest_template_app.c
+** File: coveragetest_sqlite_app.c
 **
 ** Purpose:
-** Coverage Unit Test cases for the Template Application
+** Coverage Unit Test cases for the Sqlite Application
 **
 ** Notes:
 ** This implements various test cases to exercise all code
@@ -36,7 +36,7 @@
  * Includes
  */
 #include "sample_lib.h" /* For SAMPLE_LIB_Function */
-#include "template_app_coveragetest_common.h"
+#include "sqlite_app_coveragetest_common.h"
 
 /*
 **********************************************************************************
@@ -44,26 +44,26 @@
 **********************************************************************************
 */
 
-void Test_TEMPLATE_APP_Main(void)
+void Test_SQLITE_APP_Main(void)
 {
     CFE_SB_MsgId_t MsgId = CFE_SB_INVALID_MSG_ID;
 
     /*
      * Test Case For:
-     * void TEMPLATE_APP_Main( void )
+     * void SQLITE_APP_Main( void )
      */
 
     UT_CheckEvent_t EventTest;
 
     /*
-     * TEMPLATE_APP_Main does not return a value,
+     * SQLITE_APP_Main does not return a value,
      * but it has several internal decision points
      * that need to be exercised here.
      *
      * First call it in "nominal" mode where all
      * dependent calls should be successful by default.
      */
-    TEMPLATE_APP_Main();
+    SQLITE_APP_Main();
 
     /*
      * Confirm that CFE_ES_ExitApp() was called at the end of execution
@@ -72,7 +72,7 @@ void Test_TEMPLATE_APP_Main(void)
 
     /*
      * Now set up individual cases for each of the error paths.
-     * The first is for TEMPLATE_APP_Init().  As this is in the same
+     * The first is for SQLITE_APP_Init().  As this is in the same
      * code unit, it is not a stub where the return code can be
      * easily set.  In order to get this to fail, an underlying
      * call needs to fail, and the error gets propagated through.
@@ -85,15 +85,15 @@ void Test_TEMPLATE_APP_Main(void)
      * Just call the function again.  It does not return
      * the value, so there is nothing to test for here directly.
      * However, it should show up in the coverage report that
-     * the TEMPLATE_APP_Init() failure path was taken.
+     * the SQLITE_APP_Init() failure path was taken.
      */
-    TEMPLATE_APP_Main();
+    SQLITE_APP_Main();
 
     /*
      * This can validate that the internal "RunStatus" was
      * set to CFE_ES_RunStatus_APP_ERROR, by querying the struct directly.
      */
-    UtAssert_UINT32_EQ(TEMPLATE_APP_Data.RunStatus, CFE_ES_RunStatus_APP_ERROR);
+    UtAssert_UINT32_EQ(SQLITE_APP_Data.RunStatus, CFE_ES_RunStatus_APP_ERROR);
 
     /*
      * Note that CFE_ES_RunLoop returns a boolean value,
@@ -112,7 +112,7 @@ void Test_TEMPLATE_APP_Main(void)
     /*
      * Invoke again
      */
-    TEMPLATE_APP_Main();
+    SQLITE_APP_Main();
 
     /*
      * Confirm that CFE_SB_ReceiveBuffer() (inside the loop) was called
@@ -126,12 +126,12 @@ void Test_TEMPLATE_APP_Main(void)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_RunLoop), 1, true);
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_ReceiveBuffer), 1, CFE_SB_PIPE_RD_ERR);
-    UT_CHECKEVENT_SETUP(&EventTest, TEMPLATE_APP_PIPE_ERR_EID, "SAMPLE APP: SB Pipe Read Error, App Will Exit");
+    UT_CHECKEVENT_SETUP(&EventTest, SQLITE_APP_PIPE_ERR_EID, "SAMPLE APP: SB Pipe Read Error, App Will Exit");
 
     /*
      * Invoke again
      */
-    TEMPLATE_APP_Main();
+    SQLITE_APP_Main();
 
     /*
      * Confirm that the event was generated
@@ -139,15 +139,15 @@ void Test_TEMPLATE_APP_Main(void)
     UtAssert_UINT32_EQ(EventTest.MatchCount, 1);
 }
 
-void Test_TEMPLATE_APP_Init(void)
+void Test_SQLITE_APP_Init(void)
 {
     /*
      * Test Case For:
-     * CFE_Status_t TEMPLATE_APP_Init( void )
+     * CFE_Status_t SQLITE_APP_Init( void )
      */
 
     /* nominal case should return CFE_SUCCESS */
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_SUCCESS);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_SUCCESS);
 
     /*
      * Trigger a failure for each of the sub-calls, and confirm a write to syslog for
@@ -155,23 +155,23 @@ void Test_TEMPLATE_APP_Init(void)
      * Note that the stub counts accumulate, because the status is _not_ reset between test cases.
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_EVS_Register), 1, CFE_EVS_INVALID_PARAMETER);
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_EVS_INVALID_PARAMETER);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_EVS_INVALID_PARAMETER);
     UtAssert_STUB_COUNT(CFE_ES_WriteToSysLog, 1);
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_CreatePipe), 1, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_EVS_SendEvent, 2); /* 1 from previous nominal case, 1 from this error path */
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_Subscribe), 1, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_EVS_SendEvent, 3); /* 1 additional event sent from this error path */
 
     UT_SetDeferredRetcode(UT_KEY(CFE_SB_Subscribe), 2, CFE_SB_BAD_ARGUMENT);
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_SB_BAD_ARGUMENT);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_SB_BAD_ARGUMENT);
     UtAssert_STUB_COUNT(CFE_EVS_SendEvent, 4); /* 1 additional event sent from this error path */
 
     UT_SetDeferredRetcode(UT_KEY(CFE_TBL_Register), 1, CFE_TBL_ERR_INVALID_OPTIONS);
-    UtAssert_INT32_EQ(TEMPLATE_APP_Init(), CFE_TBL_ERR_INVALID_OPTIONS);
+    UtAssert_INT32_EQ(SQLITE_APP_Init(), CFE_TBL_ERR_INVALID_OPTIONS);
     UtAssert_STUB_COUNT(CFE_EVS_SendEvent, 6); /* 1 from table registration error, 1 from successful init event */
 }
 
@@ -180,6 +180,6 @@ void Test_TEMPLATE_APP_Init(void)
  */
 void UtTest_Setup(void)
 {
-    ADD_TEST(TEMPLATE_APP_Main);
-    ADD_TEST(TEMPLATE_APP_Init);
+    ADD_TEST(SQLITE_APP_Main);
+    ADD_TEST(SQLITE_APP_Init);
 }

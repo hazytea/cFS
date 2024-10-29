@@ -19,49 +19,49 @@
 /**
  * @file
  *
- * Auto-Generated stub implementations for functions defined in template_app_dispatch header
+ * Auto-Generated stub implementations for functions defined in sqlite_app_dispatch header
  */
 
-#include "template_app_dispatch.h"
+#include "sqlite_app_dispatch.h"
 #include "utgenstub.h"
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_ProcessGroundCommand()
+ * Generated stub function for SQLITE_APP_ProcessGroundCommand()
  * ----------------------------------------------------
  */
-void TEMPLATE_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
+void SQLITE_APP_ProcessGroundCommand(const CFE_SB_Buffer_t *SBBufPtr)
 {
-    UT_GenStub_AddParam(TEMPLATE_APP_ProcessGroundCommand, const CFE_SB_Buffer_t *, SBBufPtr);
+    UT_GenStub_AddParam(SQLITE_APP_ProcessGroundCommand, const CFE_SB_Buffer_t *, SBBufPtr);
 
-    UT_GenStub_Execute(TEMPLATE_APP_ProcessGroundCommand, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_ProcessGroundCommand, Basic, NULL);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_TaskPipe()
+ * Generated stub function for SQLITE_APP_TaskPipe()
  * ----------------------------------------------------
  */
-void TEMPLATE_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr)
+void SQLITE_APP_TaskPipe(const CFE_SB_Buffer_t *SBBufPtr)
 {
-    UT_GenStub_AddParam(TEMPLATE_APP_TaskPipe, const CFE_SB_Buffer_t *, SBBufPtr);
+    UT_GenStub_AddParam(SQLITE_APP_TaskPipe, const CFE_SB_Buffer_t *, SBBufPtr);
 
-    UT_GenStub_Execute(TEMPLATE_APP_TaskPipe, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_TaskPipe, Basic, NULL);
 }
 
 /*
  * ----------------------------------------------------
- * Generated stub function for TEMPLATE_APP_VerifyCmdLength()
+ * Generated stub function for SQLITE_APP_VerifyCmdLength()
  * ----------------------------------------------------
  */
-bool TEMPLATE_APP_VerifyCmdLength(const CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength)
+bool SQLITE_APP_VerifyCmdLength(const CFE_MSG_Message_t *MsgPtr, size_t ExpectedLength)
 {
-    UT_GenStub_SetupReturnBuffer(TEMPLATE_APP_VerifyCmdLength, bool);
+    UT_GenStub_SetupReturnBuffer(SQLITE_APP_VerifyCmdLength, bool);
 
-    UT_GenStub_AddParam(TEMPLATE_APP_VerifyCmdLength, const CFE_MSG_Message_t *, MsgPtr);
-    UT_GenStub_AddParam(TEMPLATE_APP_VerifyCmdLength, size_t, ExpectedLength);
+    UT_GenStub_AddParam(SQLITE_APP_VerifyCmdLength, const CFE_MSG_Message_t *, MsgPtr);
+    UT_GenStub_AddParam(SQLITE_APP_VerifyCmdLength, size_t, ExpectedLength);
 
-    UT_GenStub_Execute(TEMPLATE_APP_VerifyCmdLength, Basic, NULL);
+    UT_GenStub_Execute(SQLITE_APP_VerifyCmdLength, Basic, NULL);
 
-    return UT_GenStub_GetReturnValue(TEMPLATE_APP_VerifyCmdLength, bool);
+    return UT_GenStub_GetReturnValue(SQLITE_APP_VerifyCmdLength, bool);
 }

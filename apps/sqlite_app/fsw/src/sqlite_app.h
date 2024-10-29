@@ -19,11 +19,11 @@
 /**
  * @file
  *
- * Main header file for the Template application
+ * Main header file for the Sqlite application
  */
 
-#ifndef TEMPLATE_APP_H
-#define TEMPLATE_APP_H
+#ifndef SQLITE_APP_H
+#define SQLITE_APP_H
 
 /*
 ** Required header files.
@@ -31,12 +31,12 @@
 #include "cfe.h"
 #include "cfe_config.h"
 
-#include "template_app_mission_cfg.h"
-#include "template_app_platform_cfg.h"
+#include "sqlite_app_mission_cfg.h"
+#include "sqlite_app_platform_cfg.h"
 
-#include "template_app_perfids.h"
-#include "template_app_msgids.h"
-#include "template_app_msg.h"
+#include "sqlite_app_perfids.h"
+#include "sqlite_app_msgids.h"
+#include "sqlite_app_msg.h"
 
 /************************************************************************
 ** Type Definitions
@@ -56,7 +56,7 @@ typedef struct
     /*
     ** Housekeeping telemetry packet...
     */
-    TEMPLATE_APP_HkTlm_t HkTlm;
+    SQLITE_APP_HkTlm_t HkTlm;
 
     /*
     ** Run Status variable used in the main processing loop
@@ -74,22 +74,22 @@ typedef struct
     char   PipeName[CFE_MISSION_MAX_API_LEN];
     uint16 PipeDepth;
 
-    CFE_TBL_Handle_t TblHandles[TEMPLATE_APP_NUMBER_OF_TABLES];
-} TEMPLATE_APP_Data_t;
+    CFE_TBL_Handle_t TblHandles[SQLITE_APP_NUMBER_OF_TABLES];
+} SQLITE_APP_Data_t;
 
 /*
 ** Global data structure
 */
-extern TEMPLATE_APP_Data_t TEMPLATE_APP_Data;
+extern SQLITE_APP_Data_t SQLITE_APP_Data;
 
 /****************************************************************************/
 /*
 ** Local function prototypes.
 **
-** Note: Except for the entry point (TEMPLATE_APP_Main), these
+** Note: Except for the entry point (SQLITE_APP_Main), these
 **       functions are not called from any other source module.
 */
-void         TEMPLATE_APP_Main(void);
-CFE_Status_t TEMPLATE_APP_Init(void);
+void         SQLITE_APP_Main(void);
+CFE_Status_t SQLITE_APP_Init(void);
 
-#endif /* TEMPLATE_APP_H */
+#endif /* SQLITE_APP_H */

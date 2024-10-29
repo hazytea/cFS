@@ -18,21 +18,21 @@
 
 /**
  * @file
- *   Specification for the TEMPLATE_APP table structures
+ *   Specification for the SQLITE_APP table structures
  *
- * Provides default definitions for TEMPLATE_APP table structures
+ * Provides default definitions for SQLITE_APP table structures
  *
  * @note This file may be overridden/superceded by mission-provided defintions
  * either by overriding this header or by generating definitions from a command/data
  * dictionary tool.
  */
-#ifndef TEMPLATE_APP_TBLSTRUCT_H
-#define TEMPLATE_APP_TBLSTRUCT_H
+#ifndef SQLITE_APP_TBLSTRUCT_H
+#define SQLITE_APP_TBLSTRUCT_H
 
 /*************************************************************************
  * Includes
  *************************************************************************/
-#include "template_app_tbldefs.h"
+#include "sqlite_app_tbldefs.h"
 
 /************************************************************************
  * Macro Definitions
