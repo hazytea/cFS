@@ -32,6 +32,10 @@
 #include "sqlite_tbl.h"
 #include "sqlite_app_version.h"
 
+//SQLite includes
+#include <stdio.h>
+#include <sqlite3.h>
+
 /*
 ** global data
 */
