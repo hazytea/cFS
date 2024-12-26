@@ -32,10 +32,16 @@
 #include "sqlite_tbl.h"
 #include "sqlite_app_version.h"
 
+//SQLite includes
+#include <stdio.h>
+
 /*
 ** global data
 */
 SQLITE_APP_Data_t SQLITE_APP_Data;
+
+//TODO:  CFS-8.  Put in worker thread.
+static const char SQLITE_DB_NAME[]  = "/home/jkennedy/workspace/cfs/build/exe/cpu1/cf/sqlite/sample_db";
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
 /*                                                                            */
@@ -58,6 +64,18 @@ void SQLITE_APP_Main(void)
     ** CFE_ES_RunStatus_APP_ERROR and the App will not enter the RunLoop
     */
     status = SQLITE_APP_Init();
+    if (status != CFE_SUCCESS)
+    {
+        SQLITE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
+    }
+
+    /*
+    ** Perform database initialization
+    ** If the Initialization fails, set the RunStatus to
+    ** CFE_ES_RunStatus_APP_ERROR and the App will not enter the RunLoop
+    */
+    //TODO:  CFS-8.  Put in worker thread.
+    status = SQLITE_APP_DB_Init();
     if (status != CFE_SUCCESS)
     {
         SQLITE_APP_Data.RunStatus = CFE_ES_RunStatus_APP_ERROR;
@@ -98,6 +116,9 @@ void SQLITE_APP_Main(void)
     ** Performance Log Exit Stamp
     */
     CFE_ES_PerfLogExit(SQLITE_APP_PERF_ID);
+
+    //TODO:  CFS-8.  Put in worker thread.
+    sqlite3_close(SQLITE_APP_Data.database);
 
     CFE_ES_ExitApp(SQLITE_APP_Data.RunStatus);
 }
@@ -200,6 +221,52 @@ CFE_Status_t SQLITE_APP_Init(void)
 
         CFE_EVS_SendEvent(SQLITE_APP_INIT_INF_EID, CFE_EVS_EventType_INFORMATION, "Sqlite App Initialized.%s",
                           VersionString);
+    }
+
+    return status;
+}
+
+static int callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
+	int i;
+	for(i=0; i<argc; i++)
+	{
+		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	}
+	printf("\n");
+	return 0;
+}
+
+CFE_Status_t SQLITE_APP_DB_Init(void)
+{
+    CFE_Status_t status = CFE_SUCCESS;
+    char* db_err_msg = 0;
+
+    int db_status = sqlite3_open(SQLITE_DB_NAME, &SQLITE_APP_Data.database);
+    if (db_status)
+    {
+        CFE_EVS_SendEvent(SQLITE_APP_DB_INIT_ERR_EID, CFE_EVS_EventType_ERROR, "Unable to open database. %s",
+        		sqlite3_errmsg(SQLITE_APP_Data.database));
+        CFE_ES_WriteToSysLog("SQLite App:  Unable to open database. %s",
+        		sqlite3_errmsg(SQLITE_APP_Data.database));
+        sqlite3_close(SQLITE_APP_Data.database);
+        status = CFE_STATUS_EXTERNAL_RESOURCE_FAIL;
+    }
+    else
+    {
+    	db_status = sqlite3_exec(SQLITE_APP_Data.database, "select name from sqlite_master WHERE type='table';", callback, 0, &db_err_msg);
+    	if(db_status != SQLITE_OK)
+    	{
+            CFE_EVS_SendEvent(SQLITE_APP_DB_INIT_ERR_EID, CFE_EVS_EventType_ERROR, "Unable to query database. %s",
+            		sqlite3_errmsg(SQLITE_APP_Data.database));
+            CFE_ES_WriteToSysLog("SQLite App:  Unable to query database. %s", db_err_msg);
+    		sqlite3_free(db_err_msg);
+            status = CFE_STATUS_EXTERNAL_RESOURCE_FAIL;
+    	}
+    	else
+    	{
+    		status = CFE_SUCCESS;
+    	}
     }
 
     return status;

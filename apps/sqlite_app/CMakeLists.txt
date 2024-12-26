@@ -19,10 +19,13 @@ endif()
 # Create the app module
 add_cfe_app(sqlite_app ${APP_SRC_FILES})
 
-target_include_directories(sqlite_app PUBLIC fsw/inc)
+target_include_directories(sqlite_app PRIVATE fsw/inc)
 
 # Add table
 add_cfe_tables(sqlite_app fsw/tables/sqlite_tbl.c)
+
+# Link the sqlite_app with the sqlite
+target_link_libraries(sqlite_app sqlite3)
 
 # If UT is enabled, then add the tests from the subdirectory
 # Note that this is an app, and therefore does not provide

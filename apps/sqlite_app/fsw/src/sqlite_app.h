@@ -38,6 +38,9 @@
 #include "sqlite_app_msgids.h"
 #include "sqlite_app_msg.h"
 
+//SQLite includes
+#include <sqlite3.h>
+
 /************************************************************************
 ** Type Definitions
 *************************************************************************/
@@ -75,6 +78,8 @@ typedef struct
     uint16 PipeDepth;
 
     CFE_TBL_Handle_t TblHandles[SQLITE_APP_NUMBER_OF_TABLES];
+
+    sqlite3* database;
 } SQLITE_APP_Data_t;
 
 /*
@@ -91,5 +96,7 @@ extern SQLITE_APP_Data_t SQLITE_APP_Data;
 */
 void         SQLITE_APP_Main(void);
 CFE_Status_t SQLITE_APP_Init(void);
+
+CFE_Status_t SQLITE_APP_DB_Init(void);
 
 #endif /* SQLITE_APP_H */
