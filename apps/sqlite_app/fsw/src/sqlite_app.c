@@ -41,7 +41,7 @@
 SQLITE_APP_Data_t SQLITE_APP_Data;
 
 //TODO:  CFS-8.  Put in worker thread.
-static const char SQLITE_DB_NAME[]  = "cf/sample_db";
+static const char SQLITE_DB_NAME[]  = "/home/jkennedy/workspace/cfs/build/exe/cpu1/cf/sqlite/sample_db";
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * *  * * * * **/
 /*                                                                            */
