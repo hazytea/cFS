@@ -1,0 +1,43 @@
+#Step 1:  Copy old app to new and change file names.
+Copy over desired template app.
+rm -rf .git and .github
+cd app/template_app/config
+rename 's/default_template_/default_<new_name>_/' default_template_app_*
+cd app/template_app/eds
+mv template_app.xml <new_name>_app.xml
+cd app/template_app/fsw/inc
+mv template_app_eventids.h <new_name>_app_eventids.h
+cd apps/template_app/fsw/src
+rename 's/template_/<new_name>_/' template_app*
+cd apps/template_app/fsw/tables
+mv template_app_tbl.c <new_name>_app_tbl.c
+#rename contents of app/unit-test, if desired.
+Check in code at this point as a save point.
+
+
+#Step 2:  Modify file contents to reflect new app name.
+In config/default_<new_name>_app_fcncodes.h, select the template app name (TEMPLATE_APP) and do a case-sensitive replace of the phrase in the workspace defined by the app directory.
+In fsw/inc/<new_name>_app_eventids.h, select the template app name (Template App) and do a case-sensitive replace of the phrase in the workspace defined by the app directory.
+Do a full text, case-insensitive search on the word "template" and continue replacing until none are left.  Care to always do case-senstive replacement and include underscores to be pedantic.
+Will take about 10 replacements, including unit test directories.
+Check in code at this point, as a save point.
+
+#Step 3:  CMakeLists.txt changes.
+Check the project name and cfe_app name.
+Remove references to template or sample libraries.
+Do similar for unit test file, if desired.
+
+Step 4:  Functional code changes.
+Remove references to template or sample libraries.
+Remove NOOP function codes and related code.
+
+Step 5:  Miscellaneous
+Modify README.md, etc to reflect new app.
+
+Step 6:  Build
+Add the new app to startup.scr.  Care that everything in here is case-sensitive.
+Add the new app to the cpu_APPLIST section of targets.cmake
+Make and build.  
+There will likely be errors for things like name lengths, as cFE is stingy and defaults a lot of strings to 20 characters.  
+-Tables are bad here.  They want to be named <new_app>_app_tbl.tbl.  Suggest removing the _tbl to make shorter.  This needs to be made several places or the app won't start.  The actual mission table can be named correctly later.
+-If this has been done before, some of these defaults may have been made larger in the toolchain.
