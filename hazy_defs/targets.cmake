@@ -106,7 +106,10 @@ SET(cpu1_APPLIST ci_lab
 	to_lab 
 	sch_lab
 	sqlite_app)
-SET(cpu1_FILELIST cfe_es_startup.scr)
+	
+SET(cpu1_FILELIST cfe_es_startup.scr
+	sqlite/sample_db)
+	
 SET(cpu1_SYSTEM i686-linux-gnu)
 
 # CPU2 example.  This is not built by default anymore but
